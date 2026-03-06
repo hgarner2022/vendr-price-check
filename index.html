@@ -1282,7 +1282,7 @@
             <h2 class="reveal">The intelligence layer</h2>
 
             <!-- Unified visual flow: Document → Pipeline → AI Summary -->
-            <div class="reveal" style="display:grid;grid-template-columns:2fr minmax(140px,1fr) 2fr;gap:clamp(12px,2vw,32px);align-items:center;margin-top:var(--content-gap);width:100%;">
+            <div class="reveal" style="display:grid;grid-template-columns:2fr minmax(180px,1.3fr) 2fr;gap:clamp(16px,2.5vw,36px);align-items:center;margin-top:var(--content-gap);width:100%;">
 
                 <!-- Left: Raw document input -->
                 <div style="text-align:center;">
@@ -1291,38 +1291,38 @@
                 </div>
 
                 <!-- Center: Transformation pipeline as vertical steps -->
-                <div style="display:flex;flex-direction:column;gap:clamp(6px,1vh,12px);position:relative;">
-                    <div style="position:absolute;left:clamp(13px,1.6vh,19px);top:clamp(14px,1.8vh,20px);bottom:clamp(14px,1.8vh,20px);width:1px;background:linear-gradient(180deg,var(--accent-gold),var(--accent-terracotta),var(--accent-sage),var(--accent-pink));opacity:0.3;"></div>
+                <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,20px);position:relative;padding:clamp(12px,2vh,24px) 0;">
+                    <div style="position:absolute;left:clamp(15px,2vh,22px);top:clamp(28px,4vh,40px);bottom:clamp(28px,4vh,40px);width:1px;background:linear-gradient(180deg,var(--accent-gold),var(--accent-terracotta),var(--accent-sage),var(--accent-pink));opacity:0.35;"></div>
 
-                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(212,165,116,0.5);color:var(--accent-gold);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">1</span>
+                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(212,165,116,0.5);color:var(--accent-gold);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">1</span>
                         <div>
-                            <strong style="color:var(--accent-gold);font-size:var(--small-size);display:block;">Upload</strong>
-                            <span style="color:var(--text-muted);font-size:var(--label-size);">PDF, quote, or PO</span>
+                            <strong style="color:var(--accent-gold);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Upload</strong>
+                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">PDF, quote, or PO</span>
                         </div>
                     </div>
 
-                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(196,122,90,0.5);color:var(--accent-terracotta);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">2</span>
+                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(196,122,90,0.5);color:var(--accent-terracotta);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">2</span>
                         <div>
-                            <strong style="color:var(--accent-terracotta);font-size:var(--small-size);display:block;">Extract</strong>
-                            <span style="color:var(--text-muted);font-size:var(--label-size);">Extend.ai &mdash; 95%+ accuracy</span>
+                            <strong style="color:var(--accent-terracotta);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Extract</strong>
+                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Extend.ai &mdash; 95%+ accuracy</span>
                         </div>
                     </div>
 
-                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(138,154,122,0.5);color:var(--accent-sage);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">3</span>
+                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(138,154,122,0.5);color:var(--accent-sage);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">3</span>
                         <div>
-                            <strong style="color:var(--accent-sage);font-size:var(--small-size);display:block;">Schema</strong>
-                            <span style="color:var(--text-muted);font-size:var(--label-size);">SKU mapping &amp; scoring</span>
+                            <strong style="color:var(--accent-sage);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Schema</strong>
+                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">SKU mapping &amp; scoring</span>
                         </div>
                     </div>
 
-                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(232,180,184,0.5);color:var(--accent-pink);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">4</span>
+                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(232,180,184,0.5);color:var(--accent-pink);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">4</span>
                         <div>
-                            <strong style="color:var(--accent-pink);font-size:var(--small-size);display:block;">Output</strong>
-                            <span style="color:var(--text-muted);font-size:var(--label-size);">Personalized to data depth</span>
+                            <strong style="color:var(--accent-pink);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Output</strong>
+                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Personalized to data depth</span>
                         </div>
                     </div>
                 </div>
