@@ -796,12 +796,166 @@
             outline-offset: 4px;
             border-radius: 4px;
         }
+
+        /* ===========================================
+           CONFETTI & FUN STUFF
+           =========================================== */
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            z-index: 100000;
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        /* Share button */
+        .share-btn {
+            position: fixed;
+            bottom: clamp(16px, 3vh, 28px);
+            right: clamp(16px, 3vw, 28px);
+            z-index: 10000;
+            background: var(--bg-card);
+            border: 1px solid rgba(200,184,150,0.15);
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 13px;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s var(--ease-out-expo);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .share-btn:hover {
+            background: rgba(201,184,150,0.12);
+            color: var(--text-primary);
+            border-color: rgba(200,184,150,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .share-btn.copied {
+            background: var(--accent-sage);
+            color: #0f0f0f;
+            border-color: var(--accent-sage);
+        }
+        .share-btn svg { width: 16px; height: 16px; }
+
+        /* Keyboard hints */
+        .nav-hint {
+            position: fixed;
+            bottom: clamp(16px, 3vh, 28px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-size: 11px;
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+        }
+        .nav-hint.visible { opacity: 1; }
+        .nav-hint kbd {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-family: var(--font-body);
+            font-size: 11px;
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .sparkle-star {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: sparkle-pop 0.8s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes sparkle-pop {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        /* Enhanced reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity var(--duration-slow) var(--ease-out-expo),
+                        transform var(--duration-slow) var(--ease-spring);
+        }
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Staggered children animation */
+        .stagger-reveal > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s var(--ease-out-expo),
+                        transform 0.5s var(--ease-out-expo);
+        }
+        .stagger-reveal.visible > *:nth-child(1) { transition-delay: 0s; }
+        .stagger-reveal.visible > *:nth-child(2) { transition-delay: 0.1s; }
+        .stagger-reveal.visible > *:nth-child(3) { transition-delay: 0.2s; }
+        .stagger-reveal.visible > *:nth-child(4) { transition-delay: 0.3s; }
+        .stagger-reveal.visible > *:nth-child(5) { transition-delay: 0.35s; }
+        .stagger-reveal.visible > *:nth-child(6) { transition-delay: 0.4s; }
+        .stagger-reveal.visible > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .stagger-reveal.visible > * {
+            transition: opacity 0.5s var(--ease-out-expo),
+                        transform 0.5s var(--ease-out-expo);
+        }
+        .stagger-reveal.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
     <!-- Progress bar -->
     <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Share button -->
+    <button class="share-btn" id="shareBtn" title="Copy link to share">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        <span id="shareBtnText">Share</span>
+    </button>
+
+    <!-- Keyboard nav hint -->
+    <div class="nav-hint" id="navHint">
+        <kbd>&darr;</kbd> scroll to navigate &middot; <kbd>&uarr;</kbd> go back
+    </div>
 
     <!-- Navigation dots -->
     <nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
@@ -1612,6 +1766,123 @@
                 editor.save();
             }
         });
+
+        /* ===========================================
+           CONFETTI ON CLOSING SLIDE
+           =========================================== */
+        function launchConfetti() {
+            const colors = ['#c9b896','#e8b4b8','#8a9a7a','#c47a5a','#b8687a','#d4a574'];
+            const shapes = ['square','circle'];
+            for (let i = 0; i < 80; i++) {
+                const el = document.createElement('div');
+                el.classList.add('confetti-piece');
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                const size = Math.random() * 8 + 5;
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
+                el.style.background = color;
+                el.style.borderRadius = shape === 'circle' ? '50%' : '2px';
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.top = '-10px';
+                document.body.appendChild(el);
+
+                const xDrift = (Math.random() - 0.5) * 200;
+                const duration = Math.random() * 2000 + 1500;
+                const rotation = Math.random() * 720 - 360;
+
+                el.animate([
+                    { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translateY(100vh) translateX(${xDrift}px) rotate(${rotation}deg)`, opacity: 0 }
+                ], { duration, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)', fill: 'forwards' });
+
+                setTimeout(() => el.remove(), duration + 100);
+            }
+        }
+
+        let confettiFired = false;
+        const closingSlide = document.querySelector('[data-slide="15"]');
+        if (closingSlide) {
+            const confettiObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !confettiFired) {
+                        confettiFired = true;
+                        setTimeout(launchConfetti, 400);
+                    }
+                });
+            }, { threshold: 0.6 });
+            confettiObserver.observe(closingSlide);
+        }
+
+        /* ===========================================
+           SPARKLE EFFECT ON METRICS SLIDE
+           =========================================== */
+        function createSparkles(el) {
+            const rect = el.getBoundingClientRect();
+            const colors = ['#c9b896','#e8b4b8','#8a9a7a','#c47a5a'];
+            for (let i = 0; i < 12; i++) {
+                const star = document.createElement('div');
+                star.classList.add('sparkle-star');
+                star.style.background = colors[Math.floor(Math.random() * colors.length)];
+                star.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                star.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                star.style.position = 'fixed';
+                star.style.zIndex = '10000';
+                star.style.animationDelay = (Math.random() * 0.5) + 's';
+                document.body.appendChild(star);
+                setTimeout(() => star.remove(), 1500);
+            }
+        }
+
+        let sparklesFired = false;
+        const metricsSlide = document.querySelector('[data-slide="13"]');
+        if (metricsSlide) {
+            const sparkleObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !sparklesFired) {
+                        sparklesFired = true;
+                        const results = metricsSlide.querySelectorAll('.result-after');
+                        results.forEach((r, i) => {
+                            setTimeout(() => createSparkles(r), 600 + i * 300);
+                        });
+                    }
+                });
+            }, { threshold: 0.6 });
+            sparkleObserver.observe(metricsSlide);
+        }
+
+        /* ===========================================
+           SHARE BUTTON
+           =========================================== */
+        const shareBtn = document.getElementById('shareBtn');
+        const shareBtnText = document.getElementById('shareBtnText');
+        shareBtn.addEventListener('click', async () => {
+            const url = window.location.href;
+            if (navigator.share) {
+                try { await navigator.share({ title: 'Vendr Price Check — Case Study', url }); } catch(e) {}
+            } else {
+                await navigator.clipboard.writeText(url);
+                shareBtn.classList.add('copied');
+                shareBtnText.textContent = 'Copied!';
+                setTimeout(() => {
+                    shareBtn.classList.remove('copied');
+                    shareBtnText.textContent = 'Share';
+                }, 2000);
+            }
+        });
+
+        /* ===========================================
+           KEYBOARD NAV HINTS
+           =========================================== */
+        const navHint = document.getElementById('navHint');
+        let hintShown = false;
+        setTimeout(() => {
+            if (!hintShown) {
+                navHint.classList.add('visible');
+                hintShown = true;
+                setTimeout(() => navHint.classList.remove('visible'), 4000);
+            }
+        }, 2000);
     </script>
 </body>
 </html>
