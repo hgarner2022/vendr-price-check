@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productizing Intelligence — Hannah Garner</title>
+
+    <!-- Fonts: Cormorant (elegant serif display) + IBM Plex Sans (clean body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===========================================
+           CSS CUSTOM PROPERTIES — DARK BOTANICAL
+           Elegant, sophisticated, artistic, premium
+           =========================================== */
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #161614;
+            --bg-card: #1a1a18;
+            --text-primary: #e8e4df;
+            --text-secondary: #9a9590;
+            --text-muted: #6b6560;
+            --accent-warm: #d4a574;
+            --accent-pink: #e8b4b8;
+            --accent-gold: #c9b896;
+            --accent-sage: #8a9a7a;
+            --accent-terracotta: #c47a5a;
+            --accent-rose: #b8687a;
+
+            --font-display: 'Cormorant', Georgia, serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+
+            --title-size: clamp(2rem, 5.5vw, 4.5rem);
+            --h2-size: clamp(1.4rem, 3.5vw, 2.8rem);
+            --h3-size: clamp(1rem, 2.2vw, 1.5rem);
+            --body-size: clamp(0.75rem, 1.4vw, 1.05rem);
+            --small-size: clamp(0.65rem, 1vw, 0.85rem);
+            --label-size: clamp(0.55rem, 0.9vw, 0.75rem);
+
+            --slide-padding: clamp(1.5rem, 5vw, 5rem);
+            --content-gap: clamp(0.5rem, 2vw, 2rem);
+            --element-gap: clamp(0.25rem, 1vw, 1rem);
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --duration-normal: 0.7s;
+            --duration-slow: 1.2s;
+        }
+
+        /* ===========================================
+           RESET & BASE
+           =========================================== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ===========================================
+           VIEWPORT FITTING: MANDATORY BASE STYLES
+           =========================================== */
+        html, body { height: 100%; overflow-x: hidden; }
+        html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+            padding: var(--slide-padding);
+        }
+
+        img, .image-container {
+            max-width: 100%;
+            max-height: min(65vh, 550px);
+            object-fit: contain;
+        }
+
+        .card, .container, .content-box {
+            max-width: min(90vw, 1000px);
+            max-height: min(80vh, 700px);
+        }
+
+        .feature-list, .bullet-list { gap: clamp(0.4rem, 1vh, 1rem); }
+        .feature-list li, .bullet-list li { font-size: var(--body-size); line-height: 1.4; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+        }
+
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(0.75rem, 3vw, 2rem);
+                --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+                --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+                --h2-size: clamp(1rem, 3vw, 1.75rem);
+            }
+        }
+
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+                --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+                --title-size: clamp(1.1rem, 4vw, 2rem);
+                --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+            }
+            .nav-dots, .keyboard-hint, .decorative { display: none; }
+        }
+
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.4rem, 2vw, 1rem);
+                --title-size: clamp(1rem, 3.5vw, 1.5rem);
+                --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+                --body-size: clamp(0.65rem, 1vw, 0.85rem);
+            }
+        }
+
+        @media (max-width: 600px) {
+            :root { --title-size: clamp(1.25rem, 7vw, 2.5rem); }
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===========================================
+           BODY & GLOBAL STYLES
+           =========================================== */
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: var(--body-size);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+
+        h1 { font-size: var(--title-size); }
+        h2 { font-size: var(--h2-size); }
+        h3 { font-size: var(--h3-size); font-weight: 600; }
+
+        /* ===========================================
+           BOTANICAL DECORATIVE ELEMENTS
+           Soft gradient orbs + thin accent lines
+           =========================================== */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-pink {
+            background: radial-gradient(circle, var(--accent-pink), transparent 70%);
+        }
+        .orb-gold {
+            background: radial-gradient(circle, var(--accent-gold), transparent 70%);
+        }
+        .orb-warm {
+            background: radial-gradient(circle, var(--accent-warm), transparent 70%);
+        }
+        .orb-sage {
+            background: radial-gradient(circle, var(--accent-sage), transparent 70%);
+        }
+        .orb-rose {
+            background: radial-gradient(circle, var(--accent-terracotta), transparent 70%);
+        }
+
+        .accent-line {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--accent-gold), transparent);
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===========================================
+           REVEAL ANIMATIONS
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity var(--duration-slow) var(--ease-out-expo),
+                        transform var(--duration-slow) var(--ease-out-expo);
+        }
+
+        .reveal-blur {
+            opacity: 0;
+            filter: blur(8px);
+            transition: opacity var(--duration-slow) var(--ease-out-expo),
+                        filter var(--duration-slow) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal,
+        .slide.visible .reveal-left,
+        .slide.visible .reveal-scale {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        .slide.visible .reveal-blur {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        .reveal:nth-child(1) { transition-delay: 0.05s; }
+        .reveal:nth-child(2) { transition-delay: 0.15s; }
+        .reveal:nth-child(3) { transition-delay: 0.25s; }
+        .reveal:nth-child(4) { transition-delay: 0.35s; }
+        .reveal:nth-child(5) { transition-delay: 0.45s; }
+        .reveal:nth-child(6) { transition-delay: 0.55s; }
+
+        /* ===========================================
+           SLIDE NUMBER
+           =========================================== */
+        .slide-number {
+            position: absolute;
+            top: clamp(1rem, 3vh, 2rem);
+            right: clamp(1.5rem, 4vw, 3rem);
+            font-family: var(--font-display);
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            font-style: italic;
+            letter-spacing: 0.1em;
+            z-index: 2;
+        }
+
+        /* ===========================================
+           PROGRESS BAR
+           =========================================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-warm), var(--accent-pink), var(--accent-gold));
+            z-index: 1000;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* ===========================================
+           NAV DOTS
+           =========================================== */
+        .nav-dots {
+            position: fixed;
+            right: clamp(0.75rem, 2vw, 1.5rem);
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(6px, 1vh, 10px);
+            z-index: 100;
+        }
+        .nav-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            opacity: 0.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+        .nav-dot.active {
+            opacity: 1;
+            background: var(--accent-warm);
+            transform: scale(1.4);
+        }
+
+        /* ===========================================
+           SLIDE 1: TITLE
+           =========================================== */
+        .title-slide {
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .title-slide .slide-content {
+            align-items: center;
+            gap: var(--content-gap);
+            z-index: 1;
+        }
+
+        .presenter-photo {
+            width: clamp(80px, 12vw, 140px);
+            height: clamp(80px, 12vw, 140px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-gold);
+            opacity: 0.9;
+        }
+
+        .title-label {
+            font-family: var(--font-body);
+            font-size: var(--label-size);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent-warm);
+            font-weight: 500;
+        }
+
+        .title-subtitle {
+            font-family: var(--font-display);
+            font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 600px;
+        }
+
+        .title-meta {
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* ===========================================
+           SLIDE LAYOUTS
+           =========================================== */
+        .centered-slide .slide-content {
+            align-items: center;
+            text-align: center;
+            gap: var(--content-gap);
+        }
+
+        .left-slide .slide-content {
+            max-width: min(85vw, 800px);
+            gap: var(--content-gap);
+        }
+
+        .split-slide .slide-content {
+            flex-direction: row;
+            align-items: center;
+            gap: clamp(1.5rem, 4vw, 4rem);
+        }
+
+        .split-slide .split-left,
+        .split-slide .split-right {
+            flex: 1;
+            min-width: 0;
+        }
+
+        @media (max-width: 768px) {
+            .split-slide .slide-content {
+                flex-direction: column;
+            }
+        }
+
+        /* ===========================================
+           CONTENT COMPONENTS
+           =========================================== */
+
+        /* Accent label above headings */
+        .section-label {
+            font-family: var(--font-body);
+            font-size: var(--label-size);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--accent-warm);
+            font-weight: 500;
+            margin-bottom: clamp(0.25rem, 0.5vh, 0.5rem);
+        }
+
+        /* Body paragraphs */
+        .body-text {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 650px;
+        }
+
+        /* Metric cards */
+        .metrics-row {
+            display: flex;
+            gap: clamp(1rem, 3vw, 3rem);
+            flex-wrap: wrap;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(2px, 0.3vh, 4px);
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 3.5rem);
+            font-weight: 600;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        /* Timeline / phases */
+        .phase-list {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.5rem, 1.2vh, 1rem);
+            list-style: none;
+        }
+
+        .phase-item {
+            display: flex;
+            align-items: flex-start;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .phase-marker {
+            font-family: var(--font-display);
+            font-size: var(--small-size);
+            color: var(--accent-warm);
+            font-style: italic;
+            min-width: clamp(20px, 3vw, 35px);
+            padding-top: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        .phase-text strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Data tiers */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.5rem, 1.5vw, 1.5rem);
+        }
+
+        @media (max-width: 700px) {
+            .tier-grid { grid-template-columns: 1fr; }
+        }
+
+        .tier-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(200, 184, 150, 0.08);
+            border-radius: 8px;
+            padding: clamp(0.75rem, 2vw, 1.5rem);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(4px, 0.5vh, 8px);
+        }
+
+        .tier-card h3 {
+            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+            color: var(--accent-gold);
+        }
+
+        .tier-card p {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .tier-tag {
+            font-size: var(--label-size);
+            color: var(--accent-warm);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+        }
+
+        /* Product screenshot */
+        .product-img {
+            max-height: min(65vh, 550px);
+            border-radius: 10px;
+            border: 1px solid rgba(200, 184, 150, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+            width: auto;
+        }
+
+        /* Insight callout */
+        .callout {
+            border-left: 2px solid var(--accent-warm);
+            padding-left: clamp(0.75rem, 2vw, 1.5rem);
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.5;
+            max-width: 600px;
+        }
+
+        /* Results highlight */
+        .result-row {
+            display: flex;
+            align-items: baseline;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            padding: clamp(0.4rem, 0.8vh, 0.75rem) 0;
+            border-bottom: 1px solid rgba(200, 184, 150, 0.06);
+        }
+
+        .result-before {
+            font-size: var(--body-size);
+            color: var(--text-muted);
+            text-decoration: line-through;
+            min-width: clamp(60px, 10vw, 100px);
+        }
+
+        .result-arrow {
+            color: var(--accent-warm);
+            font-size: var(--body-size);
+        }
+
+        .result-after {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .result-label {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            margin-left: auto;
+        }
+
+        /* Persona card */
+        .persona-card {
+            display: flex;
+            align-items: center;
+            gap: clamp(1rem, 3vw, 2rem);
+            background: var(--bg-card);
+            border: 1px solid rgba(200, 184, 150, 0.08);
+            border-radius: 12px;
+            padding: clamp(1rem, 2.5vw, 2rem);
+        }
+
+        .persona-photo {
+            width: clamp(60px, 10vw, 100px);
+            height: clamp(60px, 10vw, 100px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        .persona-info {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(2px, 0.4vh, 6px);
+        }
+
+        .persona-name {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .persona-role {
+            font-size: var(--small-size);
+            color: var(--accent-warm);
+        }
+
+        .persona-quote {
+            font-family: var(--font-display);
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Reflection list */
+        .reflection-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.5rem, 1.2vh, 1rem);
+        }
+
+        .reflection-list li {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding-left: clamp(1rem, 2vw, 1.5rem);
+            position: relative;
+        }
+
+        .reflection-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: clamp(6px, 0.8vh, 10px);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent-warm);
+        }
+
+        /* Closing slide */
+        .closing-slide .slide-content {
+            align-items: center;
+            text-align: center;
+            gap: var(--content-gap);
+        }
+
+        .closing-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 500px;
+        }
+
+        /* Triad layout */
+        .triad-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 3rem);
+            flex-wrap: wrap;
+        }
+
+        .triad-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(4px, 0.6vh, 8px);
+        }
+
+        .triad-circle {
+            width: clamp(50px, 8vw, 80px);
+            height: clamp(50px, 8vw, 80px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+            font-weight: 600;
+            border: 2px solid;
+            overflow: hidden;
+        }
+
+        .triad-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .triad-circle.pm { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .triad-circle.design { border-color: var(--accent-pink); color: var(--accent-pink); }
+        .triad-circle.eng { border-color: var(--accent-sage); color: var(--accent-sage); }
+        .triad-circle.data { border-color: var(--accent-terracotta); color: var(--accent-terracotta); }
+
+        .triad-label {
+            font-size: var(--label-size);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .triad-connector {
+            width: clamp(20px, 4vw, 50px);
+            height: 1px;
+            background: rgba(200, 184, 150, 0.15);
+        }
+
+        /* Stakeholder insight */
+        .insight-pair {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.75rem, 1.5vh, 1.5rem);
+        }
+
+        .insight-item {
+            display: flex;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            align-items: flex-start;
+        }
+
+        .insight-icon {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .insight-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .insight-content strong {
+            font-size: var(--body-size);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .insight-content span {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ===========================================
+           EDIT MODE (Inline Editing)
+           =========================================== */
+        .edit-hotzone {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            z-index: 10000;
+            cursor: pointer;
+        }
+        .edit-toggle {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid rgba(200, 184, 150, 0.2);
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10001;
+        }
+        .edit-toggle.show,
+        .edit-toggle.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .edit-toggle.active {
+            background: var(--accent-warm);
+            color: var(--bg-primary);
+            border-color: var(--accent-warm);
+        }
+        [contenteditable="true"] {
+            outline: 1px dashed rgba(212, 165, 116, 0.4);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation dots -->
+    <nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
+
+    <!-- Edit mode controls -->
+    <div class="edit-hotzone" id="editHotzone"></div>
+    <button class="edit-toggle" id="editToggle" title="Edit mode (E)">&#9998;</button>
+
+    <!-- ===================================================
+         SLIDE 1: TITLE
+         =================================================== -->
+    <section class="slide title-slide" data-slide="0">
+        <!-- Decorative orbs -->
+        <div class="orb orb-pink" style="width:400px;height:400px;top:-10%;right:-5%;"></div>
+        <div class="orb orb-gold" style="width:300px;height:300px;bottom:-5%;left:-3%;"></div>
+        <div class="accent-line" style="height:40%;top:30%;left:12%;"></div>
+
+        <div class="slide-content">
+            <img src="vendr-price-check-assets/hannah.jpg" alt="Hannah Garner" class="presenter-photo reveal">
+            <span class="title-label reveal">Portfolio Case Study</span>
+            <h1 class="reveal" style="max-width:700px;">Price Check</h1>
+            <p class="title-subtitle reveal">Turning locked SaaS pricing data into a self-service product and a compounding data moat</p>
+            <p class="title-meta reveal">Hannah Garner &middot; Staff Product Manager</p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 2: CONTEXT — VENDR'S TRANSFORMATION
+         =================================================== -->
+    <section class="slide left-slide" data-slide="1">
+        <div class="orb orb-warm" style="width:350px;height:350px;top:10%;right:5%;"></div>
+        <div class="accent-line" style="height:60%;top:20%;right:20%;"></div>
+        <span class="slide-number">01</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">Context</span>
+            <h2 class="reveal">Vendr was transforming from<br>service company to platform</h2>
+            <ul class="phase-list" style="margin-top:var(--element-gap);">
+                <li class="phase-item reveal">
+                    <span class="phase-marker">Before</span>
+                    <span class="phase-text"><strong>Staff augmentation model</strong> &mdash; procurement negotiation specialists handling deals for enterprise customers. Manual. High-touch. Expensive.</span>
+                </li>
+                <li class="phase-item reveal">
+                    <span class="phase-marker">Shift</span>
+                    <span class="phase-text"><strong>Post-Blissfully acquisition</strong> &mdash; platform still fragmented. Enterprise market tapped out. Needed to move downstream &amp; scale without adding headcount.</span>
+                </li>
+                <li class="phase-item reveal">
+                    <span class="phase-marker">Asset</span>
+                    <span class="phase-text"><strong>$3B+ in SaaS transaction data</strong> locked in manual processes &mdash; Power BI dashboards, Airtable, hand-delivered PDFs. Took days per request.</span>
+                </li>
+            </ul>
+            <div class="reveal" style="display:flex;align-items:center;gap:clamp(0.8rem,2vw,1.5rem);margin-top:var(--content-gap);background:rgba(212,165,116,0.06);border:1px solid rgba(212,165,116,0.15);border-radius:8px;padding:clamp(0.5rem,1.2vw,1rem) clamp(0.8rem,1.5vw,1.2rem);">
+                <img src="vendr-price-check-assets/Holograph.png" alt="Vendr Verified — Low Price holographic badge" style="width:clamp(80px,12vw,140px);flex-shrink:0;border-radius:4px;">
+                <p style="color:var(--text-primary);font-size:var(--body-size);line-height:1.5;margin:0;"><strong style="color:var(--accent-gold);">Vendr was the trusted source for SaaS pricing.</strong> The brand promise: we tell you whether your price is fair &mdash; definitively. The data was the moat. But it was trapped behind a service team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 2b: PRODUCT PRINCIPLES
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="2">
+        <div class="orb orb-gold" style="width:350px;height:350px;top:-5%;right:10%;"></div>
+        <div class="orb orb-rose" style="width:200px;height:200px;bottom:10%;left:5%;"></div>
+        <span class="slide-number">02</span>
+
+        <div class="slide-content" style="max-width:700px;margin:0 auto;">
+            <span class="section-label reveal">Product Principles</span>
+            <h2 class="reveal">The strategic framework<br>that guided every decision</h2>
+
+            <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.5rem);margin-top:var(--content-gap);">
+                <div style="text-align:center;">
+                    <span style="color:var(--accent-gold);font-size:clamp(1.2rem,2vw,1.6rem);display:block;margin-bottom:clamp(4px,0.8vh,10px);">&#9670;</span>
+                    <strong style="color:var(--text-primary);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:4px;">Customers don&rsquo;t come to us</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;">We go to them &mdash; buyer guides, Chrome extension, embeddable APIs.</p>
+                </div>
+                <div style="text-align:center;">
+                    <span style="color:var(--accent-terracotta);font-size:clamp(1.2rem,2vw,1.6rem);display:block;margin-bottom:clamp(4px,0.8vh,10px);">&#9670;</span>
+                    <strong style="color:var(--text-primary);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:4px;">Big rocks, not gravel</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;">Focus on the top 100&ndash;200 suppliers where data is deep and demand is highest.</p>
+                </div>
+                <div style="text-align:center;">
+                    <span style="color:var(--accent-sage);font-size:clamp(1.2rem,2vw,1.6rem);display:block;margin-bottom:clamp(4px,0.8vh,10px);">&#9670;</span>
+                    <strong style="color:var(--text-primary);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:4px;">Data fuels price transparency</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;">Every contract uploaded enriches the AI. The product gets smarter with every user.</p>
+                </div>
+                <div style="text-align:center;">
+                    <span style="color:var(--accent-pink);font-size:clamp(1.2rem,2vw,1.6rem);display:block;margin-bottom:clamp(4px,0.8vh,10px);">&#9670;</span>
+                    <strong style="color:var(--text-primary);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:4px;">Educate, not just solve</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;">Show the bell curve, the data points, the reasoning. Build trust through transparency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 3: THE PROBLEM
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="3">
+        <div class="orb orb-sage" style="width:300px;height:300px;bottom:5%;left:60%;"></div>
+        <span class="slide-number">03</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">Problem Definition</span>
+            <h2 class="reveal">SaaS pricing is completely opaque</h2>
+
+            <div class="reveal" style="margin-top:var(--content-gap);">
+                <p style="color:var(--text-secondary);font-size:var(--body-size);line-height:1.7;">There are no public benchmarks for what software actually costs. Buyers Google it, find nothing, and sign contracts blind.</p>
+                <p style="color:var(--text-primary);font-size:var(--body-size);line-height:1.7;margin-top:clamp(0.75rem,1.5vh,1.25rem);">Vendr had the answer &mdash; <strong style="color:var(--accent-gold);">$3B+ in real transaction data</strong> &mdash; but it was locked behind a service motion. Our analysts used the data to negotiate on behalf of customers. Powerful, but it didn&rsquo;t scale.</p>
+            </div>
+
+            <div class="reveal" style="display:flex;gap:clamp(1.5rem,3vw,3rem);margin-top:clamp(1.5rem,3vh,2.5rem);">
+                <div style="border-left:2px solid var(--accent-gold);padding-left:clamp(10px,1.2vw,16px);">
+                    <strong style="color:var(--accent-gold);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;">Market</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:4px;">No one publishes real SaaS transaction prices. Every purchase &mdash; new or renewal &mdash; starts with &ldquo;Contact us for pricing.&rdquo;</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-terracotta);padding-left:clamp(10px,1.2vw,16px);">
+                    <strong style="color:var(--accent-terracotta);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;">Demand</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:4px;">Massive organic traffic to our pricing pages &mdash; people were searching for this data.</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-sage);padding-left:clamp(10px,1.2vw,16px);">
+                    <strong style="color:var(--accent-sage);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;">Gap</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:4px;">$3B+ in transaction data, but only accessible through a services team negotiating on your behalf. The insight existed &mdash; the self-serve product didn&rsquo;t.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 4: THE PERSONA
+         =================================================== -->
+    <section class="slide left-slide" data-slide="4">
+        <div class="orb orb-pink" style="width:280px;height:280px;top:15%;right:10%;"></div>
+        <div class="accent-line" style="height:50%;top:25%;left:8%;"></div>
+        <span class="slide-number">04</span>
+
+        <div class="slide-content" style="max-width:min(96vw,1300px);">
+            <span class="section-label reveal">Who we&rsquo;re building for</span>
+            <h2 class="reveal">&ldquo;Help me understand if I&rsquo;m<br>getting a good price.&rdquo;</h2>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:start;margin-top:var(--content-gap);width:100%;">
+                <!-- Left: persona card -->
+                <div class="reveal">
+                    <div style="background:var(--bg-card);border:1px solid rgba(200,184,150,0.08);border-radius:12px;padding:clamp(1rem,2vw,1.75rem);display:flex;flex-direction:column;gap:clamp(0.5rem,1vh,0.75rem);">
+                        <div style="display:flex;align-items:center;gap:clamp(0.75rem,1.5vw,1.25rem);">
+                            <img src="vendr-price-check-assets/persona.jpg" alt="Buyer persona" class="persona-photo" style="width:clamp(50px,8vw,80px);height:clamp(50px,8vw,80px);">
+                            <div>
+                                <span class="persona-name" style="display:block;">The accidental buyer</span>
+                                <span class="persona-role">Engineering VP renewing Datadog. Marketing director re-signing HubSpot. Finance manager reviewing 20 SaaS contracts this quarter.</span>
+                            </div>
+                        </div>
+                        <p style="font-family:var(--font-display);font-size:clamp(0.9rem,1.8vw,1.2rem);color:var(--text-secondary);font-style:italic;line-height:1.6;border-top:1px solid rgba(200,184,150,0.08);padding-top:clamp(0.5rem,1vh,0.75rem);">&ldquo;I got a renewal quote and I just want to know &mdash; is this a fair price? That&rsquo;s it.&rdquo;</p>
+                    </div>
+                </div>
+
+                <!-- Right: three insight cards -->
+                <div class="reveal" style="display:flex;flex-direction:column;gap:clamp(0.5rem,1vh,0.75rem);">
+                    <div style="background:var(--bg-card);border:1px solid rgba(200,184,150,0.08);border-radius:10px;padding:clamp(0.75rem,1.5vw,1.25rem);border-left:3px solid var(--accent-gold);">
+                        <strong style="color:var(--accent-gold);font-size:var(--body-size);">No leverage, no data</strong>
+                        <p style="color:var(--text-secondary);font-size:var(--body-size);line-height:1.5;margin-top:4px;">They can&rsquo;t push back on a vendor without evidence. There&rsquo;s no &ldquo;Kelley Blue Book&rdquo; for software. They&rsquo;re signing blind.</p>
+                    </div>
+                    <div style="background:var(--bg-card);border:1px solid rgba(200,184,150,0.08);border-radius:10px;padding:clamp(0.75rem,1.5vw,1.25rem);border-left:3px solid var(--accent-terracotta);">
+                        <strong style="color:var(--accent-terracotta);font-size:var(--body-size);">Not data savvy &mdash; and don&rsquo;t want to be</strong>
+                        <p style="color:var(--text-secondary);font-size:var(--body-size);line-height:1.5;margin-top:4px;">They don&rsquo;t want a spreadsheet or a bell curve. They want someone they trust to say &ldquo;you&rsquo;re overpaying&rdquo; or &ldquo;this is fair.&rdquo;</p>
+                    </div>
+                    <div style="background:var(--bg-card);border:1px solid rgba(200,184,150,0.08);border-radius:10px;padding:clamp(0.75rem,1.5vw,1.25rem);border-left:3px solid var(--accent-sage);">
+                        <strong style="color:var(--accent-sage);font-size:var(--body-size);">Vendr was that trust</strong>
+                        <p style="color:var(--text-secondary);font-size:var(--body-size);line-height:1.5;margin-top:4px;">Real transaction data from thousands of deals. The only source that could say definitively what software actually costs. Our brand <em>was</em> the answer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 5: THE STRATEGIC BET
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="5">
+        <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;left:30%;"></div>
+        <div class="orb orb-rose" style="width:250px;height:250px;bottom:10%;right:15%;"></div>
+        <span class="slide-number">05</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">Strategy &amp; Goals</span>
+            <h2 class="reveal">Build the data moat &mdash;<br>make the product smarter with every use</h2>
+            <p class="body-text reveal" style="text-align:center;margin:var(--element-gap) auto 0;">LLMs alone can&rsquo;t produce trustworthy pricing intelligence &mdash; you need well-labeled, curated datasets. No existing service could help us build them. So the bet was: use Price Check to collect the data, structure it into a proprietary engine, and expose it through APIs.</p>
+
+            <div class="metrics-row reveal" style="margin-top:var(--content-gap);justify-content:center;">
+                <div class="metric" style="text-align:center;">
+                    <span class="metric-value">Collect</span>
+                    <span class="metric-label">Every upload enriches the dataset</span>
+                </div>
+                <div class="metric" style="text-align:center;">
+                    <span class="metric-value">Structure</span>
+                    <span class="metric-label">AI agents + human reviewers curate pricing data</span>
+                </div>
+                <div class="metric" style="text-align:center;">
+                    <span class="metric-value">Expose</span>
+                    <span class="metric-label">Pricing intelligence via APIs &amp; MCP</span>
+                </div>
+            </div>
+
+            <p class="callout reveal" style="margin-top:var(--content-gap);text-align:center;">Price Check wasn&rsquo;t just a product &mdash; it was the data collection engine for building a structured pricing catalog that no competitor could replicate.</p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 6: THE TRIAD
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="6">
+        <div class="orb orb-warm" style="width:400px;height:400px;top:-10%;left:20%;"></div>
+        <span class="slide-number">06</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">The Team</span>
+            <h2 class="reveal">Who built this</h2>
+
+            <div class="triad-visual reveal" style="margin-top:var(--content-gap);">
+                <div class="triad-node">
+                    <div class="triad-circle pm"><img src="vendr-price-check-assets/hannah.jpg" alt="Hannah Garner"></div>
+                    <span class="triad-label">Hannah &middot; Staff PM</span>
+                </div>
+                <div class="triad-connector"></div>
+                <div class="triad-node">
+                    <div class="triad-circle design"><img src="vendr-price-check-assets/fabri.jpg" alt="Fabri, Staff Designer"></div>
+                    <span class="triad-label">Fabri &middot; Staff Designer</span>
+                </div>
+                <div class="triad-connector"></div>
+                <div class="triad-node">
+                    <div class="triad-circle eng"><img src="vendr-price-check-assets/andrew.jpg" alt="Andrew, Engineering Manager"></div>
+                    <span class="triad-label">Andrew &middot; Eng Manager</span>
+                </div>
+                <div class="triad-connector"></div>
+                <div class="triad-node">
+                    <div class="triad-circle data"><img src="vendr-price-check-assets/zach.jpg" alt="Zach, VP of Data"></div>
+                    <span class="triad-label">Zach &middot; VP of Data</span>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.3rem,0.8vw,0.6rem) clamp(0.6rem,1.5vw,1.2rem);margin-top:var(--content-gap);" class="reveal">
+                <div style="border-left:2px solid var(--accent-gold);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-gold);font-size:var(--small-size);">Hannah &mdash; PM</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Set the strategic direction and rollout strategy &mdash; from manual service to self-serve product to data platform. Determined what to build, in what order, and how to phase it. Embedded with analysts to learn the domain, ran the buyer guide experiment to prove demand before committing engineering, defined the phased rollout (in-product &rarr; marketplace &rarr; share &rarr; APIs), and used Mixpanel data to defend scope against executive pressure to chase competitor features.</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-pink);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-pink);font-size:var(--small-size);">Fabri &mdash; Design</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Designed the graceful degradation UX &mdash; making complex pricing data feel simple and trustworthy. Bell curve visualization, no-auth share page, tiered experience system.</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-sage);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-sage);font-size:var(--small-size);">Andrew &mdash; Engineering</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Led the team through four coupled releases. Built internal tooling, async delivery pipeline, and automated extraction with Extend. Took us from days to minutes.</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-terracotta);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-terracotta);font-size:var(--small-size);">Zach &mdash; Data</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Owned the pricing schema, SKU mapping, scoring models, and data coverage tiers. Built the intelligence layer that became the foundation for PriceGraph and OpenPrice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDES 7–11: BUILDING THE PRODUCT
+         A five-slide connected narrative showing someone
+         unfamiliar how we went from manual to automated,
+         what users experience, and how the data compounds.
+         =================================================== -->
+
+    <!-- ===================================================
+         SLIDE 7: FROM MANUAL TO AUTOMATED
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="7">
+        <div class="orb orb-sage" style="width:400px;height:400px;top:2%;right:-8%;"></div>
+        <span class="slide-number">07</span>
+
+        <div class="slide-content" style="max-width:min(96vw,1400px);">
+            <span class="section-label reveal">Building the Product</span>
+            <h2 class="reveal">Starting small, learning fast</h2>
+
+            <!-- Two-column: handcrafted PDF + discovery process -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,48px);align-items:start;margin-top:var(--content-gap);width:100%;">
+
+                <!-- Left: The handcrafted PDF -->
+                <div class="reveal" style="text-align:center;">
+                    <img src="vendr-price-check-assets/Dialog.png" alt="Handcrafted Pricing Analysis PDF" style="width:100%;max-height:min(52vh,440px);object-fit:contain;border-radius:12px;border:1px solid rgba(232,180,184,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+                    <p style="color:var(--text-secondary);font-size:var(--body-size);margin-top:clamp(8px,0.8vh,12px);">Handcrafted PDFs &middot; delivered in-app &middot; 48&ndash;72 hr turnaround</p>
+                </div>
+
+                <!-- Right: What we learned -->
+                <div class="reveal" style="display:flex;flex-direction:column;gap:clamp(12px,1.5vh,20px);padding-top:clamp(8px,1vh,16px);">
+                    <p style="color:var(--text-primary);font-size:var(--body-size);line-height:1.6;">I set the discovery strategy &mdash; embedding with domain experts and go-to-market teams, running calls to understand what customers actually needed:</p>
+
+                    <div style="display:flex;flex-direction:column;gap:clamp(8px,1vh,14px);padding-left:clamp(12px,1.5vw,20px);border-left:2px solid rgba(201,184,150,0.2);">
+                        <div>
+                            <strong style="color:var(--accent-gold);font-size:var(--body-size);">What did people want in the data?</strong>
+                            <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Pricing benchmarks, not product reviews. Fair price, not feature comparison.</p>
+                        </div>
+                        <div>
+                            <strong style="color:var(--accent-warm);font-size:var(--body-size);">What was important?</strong>
+                            <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Speed, specificity, and trust in the numbers. Buyers needed confidence before a negotiation.</p>
+                        </div>
+                        <div>
+                            <strong style="color:var(--accent-sage);font-size:var(--body-size);">What were we learning?</strong>
+                            <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Every handcrafted report taught us what to extract, what to score, and what to automate.</p>
+                        </div>
+                    </div>
+
+                    <p style="color:var(--text-muted);font-size:var(--small-size);font-style:italic;margin-top:clamp(4px,0.5vh,8px);">The Triad team &mdash; product, design, engineering &mdash; met regularly to synthesize these learnings and shape the product direction.</p>
+                </div>
+            </div>
+
+            <p class="callout reveal" style="margin-top:var(--content-gap);font-size:var(--body-size);">~20 reports a day, each one handcrafted. This phase laid the foundation &mdash; we learned the domain deeply before automating anything.</p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 8: THE INTELLIGENCE LAYER
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="8">
+        <div class="orb orb-warm" style="width:400px;height:400px;bottom:-5%;right:8%;"></div>
+        <span class="slide-number">08</span>
+
+        <div class="slide-content" style="max-width:min(96vw,1400px);">
+            <span class="section-label reveal">Building the Product</span>
+            <h2 class="reveal">The intelligence layer</h2>
+
+            <!-- Unified visual flow: Document → Pipeline → AI Summary -->
+            <div class="reveal" style="display:grid;grid-template-columns:2fr minmax(140px,1fr) 2fr;gap:clamp(12px,2vw,32px);align-items:center;margin-top:var(--content-gap);width:100%;">
+
+                <!-- Left: Raw document input -->
+                <div style="text-align:center;">
+                    <img src="vendr-price-check-assets/g2YVD08BXFx1z5AA0hbOVaw6g.avif" alt="Raw contract document" style="width:100%;max-height:min(52vh,440px);object-fit:contain;border-radius:12px;border:1px solid rgba(201,184,150,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+                    <p style="color:var(--text-muted);font-size:var(--small-size);margin-top:clamp(4px,0.5vh,8px);font-style:italic;">Tens of millions of pages &mdash; 10+ document types</p>
+                </div>
+
+                <!-- Center: Transformation pipeline as vertical steps -->
+                <div style="display:flex;flex-direction:column;gap:clamp(6px,1vh,12px);position:relative;">
+                    <div style="position:absolute;left:clamp(13px,1.6vh,19px);top:clamp(14px,1.8vh,20px);bottom:clamp(14px,1.8vh,20px);width:1px;background:linear-gradient(180deg,var(--accent-gold),var(--accent-terracotta),var(--accent-sage),var(--accent-pink));opacity:0.3;"></div>
+
+                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(212,165,116,0.5);color:var(--accent-gold);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">1</span>
+                        <div>
+                            <strong style="color:var(--accent-gold);font-size:var(--small-size);display:block;">Upload</strong>
+                            <span style="color:var(--text-muted);font-size:var(--label-size);">PDF, quote, or PO</span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(196,122,90,0.5);color:var(--accent-terracotta);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">2</span>
+                        <div>
+                            <strong style="color:var(--accent-terracotta);font-size:var(--small-size);display:block;">Extract</strong>
+                            <span style="color:var(--text-muted);font-size:var(--label-size);">Extend.ai &mdash; 95%+ accuracy</span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(138,154,122,0.5);color:var(--accent-sage);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">3</span>
+                        <div>
+                            <strong style="color:var(--accent-sage);font-size:var(--small-size);display:block;">Schema</strong>
+                            <span style="color:var(--text-muted);font-size:var(--label-size);">SKU mapping &amp; scoring</span>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;gap:clamp(6px,0.8vw,12px);position:relative;">
+                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(26px,3.2vh,38px);height:clamp(26px,3.2vh,38px);border-radius:50%;border:1px solid rgba(232,180,184,0.5);color:var(--accent-pink);font-family:var(--font-display);font-size:var(--small-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">4</span>
+                        <div>
+                            <strong style="color:var(--accent-pink);font-size:var(--small-size);display:block;">Output</strong>
+                            <span style="color:var(--text-muted);font-size:var(--label-size);">Personalized to data depth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: AI Summary output -->
+                <div style="text-align:center;">
+                    <img src="vendr-price-check-assets/ai%20summary.png" alt="AI-generated pricing summary" style="width:100%;max-height:min(52vh,440px);object-fit:contain;border-radius:12px;border:1px solid rgba(201,184,150,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+                    <p style="color:var(--text-muted);font-size:var(--small-size);margin-top:clamp(4px,0.5vh,8px);font-style:italic;">AI-generated summary</p>
+                </div>
+            </div>
+
+            <p class="callout reveal" style="margin-top:var(--content-gap);font-size:var(--body-size);">I determined that Extend was the right partner and led the integration strategy with my team &mdash; together we iterated on extraction prompts across 10+ document types, tuned models against edge cases in contracts, quotes, and order forms, and defined the accuracy thresholds that unlocked automation at scale.</p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 9: EXPOSURE — HOW USERS FIND PRICE CHECK
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="9">
+        <div class="orb orb-pink" style="width:350px;height:350px;bottom:8%;left:-6%;"></div>
+        <span class="slide-number">09</span>
+
+        <div class="slide-content" style="max-width:min(96vw,1400px);">
+            <span class="section-label reveal">Building the Product</span>
+            <h2 class="reveal">Making it easy to find</h2>
+
+            <!-- 3-panel evolution journey -->
+            <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:clamp(10px,1.5vw,20px);align-items:start;margin-top:var(--content-gap);width:100%;">
+                <div class="reveal" style="text-align:center;">
+                    <div style="background:rgba(201,184,150,0.06);border:1px solid rgba(201,184,150,0.15);border-radius:12px;padding:clamp(8px,1vh,14px);overflow:hidden;">
+                        <img src="vendr-price-check-assets/buyer-guide-app.png" alt="Price Check in-product experience" style="width:100%;max-height:min(48vh,400px);object-fit:contain;border-radius:8px;">
+                    </div>
+                    <strong style="display:block;color:var(--accent-gold);font-size:var(--body-size);text-transform:uppercase;letter-spacing:0.08em;margin-top:clamp(8px,0.8vh,12px);">V1: In-product</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--body-size);margin-top:3px;">Behind Vendr's sales motion &mdash; existing customers only. On fire from day one.</p>
+                </div>
+                <div class="reveal" style="color:var(--text-muted);font-size:clamp(1.2rem,2.5vw,2rem);padding-top:min(22vh,180px);">&#10230;</div>
+                <div class="reveal" style="text-align:center;">
+                    <div style="background:rgba(232,180,184,0.06);border:1px solid rgba(232,180,184,0.15);border-radius:12px;padding:clamp(8px,1vh,14px);overflow:hidden;">
+                        <img src="vendr-price-check-assets/Screenshot%202026-03-06%20at%2012.57.18%E2%80%AFPM.png" alt="vendr.com/marketplace" style="width:100%;max-height:min(48vh,400px);object-fit:contain;border-radius:8px;">
+                    </div>
+                    <strong style="display:block;color:var(--accent-pink);font-size:var(--body-size);text-transform:uppercase;letter-spacing:0.08em;margin-top:clamp(8px,0.8vh,12px);">V2: vendr.com/marketplace</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--body-size);margin-top:3px;">Brought to the public marketplace for self-serve discovery</p>
+                </div>
+                <div class="reveal" style="color:var(--text-muted);font-size:clamp(1.2rem,2.5vw,2rem);padding-top:min(22vh,180px);">&#10230;</div>
+                <div class="reveal" style="text-align:center;">
+                    <div style="background:rgba(138,154,122,0.06);border:1px solid rgba(138,154,122,0.15);border-radius:12px;padding:clamp(8px,1vh,14px);overflow:hidden;">
+                        <img src="vendr-price-check-assets/product-inapp.png" alt="Price Check share tooltip overlay" style="width:100%;max-height:min(48vh,400px);object-fit:contain;border-radius:8px;">
+                    </div>
+                    <strong style="display:block;color:var(--accent-sage);font-size:var(--body-size);text-transform:uppercase;letter-spacing:0.08em;margin-top:clamp(8px,0.8vh,12px);">Share</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--body-size);margin-top:3px;">No-auth share page drives viral discovery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 10: THE PRODUCT — FULL EXPERIENCE
+         Uses analysis.png (complete product page)
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="10">
+        <div class="orb orb-pink" style="width:350px;height:350px;top:3%;left:3%;"></div>
+        <div class="orb orb-gold" style="width:280px;height:280px;bottom:3%;right:3%;"></div>
+        <span class="slide-number">10</span>
+
+        <div class="slide-content" style="max-width:min(96vw,1400px);">
+            <span class="section-label reveal">Building the Product</span>
+            <h2 class="reveal">The finished product</h2>
+
+            <!-- BIG centered product image — Price Check result page -->
+            <img src="vendr-price-check-assets/priceshort.png" alt="Price Check result — bell curve, pricing analysis, line items, Low Price Guarantee" class="product-img reveal-scale" style="max-height:min(62vh,520px);border-radius:12px;border:1px solid rgba(232,180,184,0.1);margin-top:var(--content-gap);box-shadow:0 16px 50px rgba(0,0,0,0.4);">
+
+            <!-- Feature labels — horizontal strip -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,28px);margin-top:var(--content-gap);width:100%;text-align:left;" class="reveal">
+                <div style="border-left:3px solid var(--accent-gold);padding-left:clamp(10px,1.2vw,16px);">
+                    <strong style="color:var(--accent-gold);font-size:var(--body-size);">Bell curve pricing</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Where you sit vs. the market</p>
+                </div>
+                <div style="border-left:3px solid var(--accent-pink);padding-left:clamp(10px,1.2vw,16px);">
+                    <strong style="color:var(--accent-pink);font-size:var(--body-size);">Competitor alternatives</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Other products with &ldquo;Get a quote&rdquo;</p>
+                </div>
+                <div style="border-left:3px solid var(--accent-sage);padding-left:clamp(10px,1.2vw,16px);">
+                    <strong style="color:var(--accent-sage);font-size:var(--body-size);">Negotiation insights</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Specific ways to lower your price</p>
+                </div>
+                <div style="border-left:3px solid var(--accent-terracotta);padding-left:clamp(10px,1.2vw,16px);">
+                    <strong style="color:var(--accent-terracotta);font-size:var(--body-size);">AI summary</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Plain-language assessment of your deal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 11: THE FLYWHEEL — BOTH SHARE VIEWS
+         In-app share + public no-auth page
+         =================================================== -->
+    <section class="slide centered-slide" data-slide="11">
+        <div class="orb orb-sage" style="width:350px;height:350px;top:5%;right:-5%;"></div>
+        <span class="slide-number">11</span>
+
+        <div class="slide-content" style="max-width:min(96vw,1400px);">
+            <span class="section-label reveal">Building the Product</span>
+            <h2 class="reveal">Every share feeds the moat</h2>
+
+            <!-- Two share views side by side — BIG -->
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(12px,2vw,28px);align-items:center;margin-top:var(--content-gap);width:100%;">
+                <!-- Full share page view -->
+                <div class="reveal" style="text-align:center;">
+                    <img src="vendr-price-check-assets/product-inapp.png" alt="Price Check share tooltip overlay" style="width:100%;max-height:min(50vh,420px);object-fit:contain;border-radius:12px;border:1px solid rgba(201,184,150,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+                    <p style="color:var(--accent-gold);font-size:var(--body-size);font-weight:500;margin-top:clamp(8px,0.8vh,12px);">User clicks &ldquo;Share price check&rdquo;</p>
+                </div>
+                <div class="reveal" style="font-size:clamp(1.5rem,3vw,2.5rem);color:var(--accent-sage);">&#10230;</div>
+                <!-- Public no-auth page -->
+                <div class="reveal" style="text-align:center;">
+                    <img src="vendr-price-check-assets/share-no-auth.png" alt="Public no-auth share page with upload CTA" style="width:100%;max-height:min(50vh,420px);object-fit:contain;border-radius:12px;border:1px solid rgba(138,154,122,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+                    <p style="color:var(--accent-sage);font-size:var(--body-size);font-weight:500;margin-top:clamp(8px,0.8vh,12px);">Team views the data &mdash; uploads their own contract</p>
+                </div>
+            </div>
+
+            <p class="callout reveal" style="margin-top:var(--content-gap);font-size:var(--body-size);">No login required. Every share exposes a new person to Price Check &mdash; expanding the flywheel as teammates upload their own contracts. 20,000 products &middot; 12,000 buyers &middot; $3B+ in transactions.</p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 12: STAKEHOLDER MANAGEMENT
+         =================================================== -->
+    <section class="slide left-slide" data-slide="12">
+        <div class="orb orb-rose" style="width:300px;height:300px;top:10%;right:5%;"></div>
+        <span class="slide-number">12</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">Challenges</span>
+            <h2 class="reveal">Staying disciplined when<br>the appetite was everywhere</h2>
+
+            <div class="insight-pair" style="margin-top:var(--content-gap);">
+                <div class="insight-item reveal">
+                    <span class="insight-icon" style="color:var(--accent-terracotta);">&#9650;</span>
+                    <div class="insight-content">
+                        <strong>CEO-led scope pressure</strong>
+                        <span>&ldquo;Can we add reviews? Can we compete with G2?&rdquo; &mdash; Lots of appetite to go in many directions. Used Mixpanel data to show that users only engaged with pricing and negotiation data. Reviews got almost zero interaction.</span>
+                    </div>
+                </div>
+                <div class="insight-item reveal">
+                    <span class="insight-icon" style="color:var(--accent-warm);">&#9650;</span>
+                    <div class="insight-content">
+                        <strong>Defining what we are not</strong>
+                        <span>Price Check answers &ldquo;am I getting a fair price?&rdquo; &mdash; not &ldquo;what product should I buy?&rdquo; Held that line against pressure to become a product comparison tool.</span>
+                    </div>
+                </div>
+                <div class="insight-item reveal">
+                    <span class="insight-icon" style="color:var(--accent-sage);">&#9650;</span>
+                    <div class="insight-content">
+                        <strong>The &ldquo;free&rdquo; cultural shift</strong>
+                        <span>A service company giving away its core insight required trust in the data flywheel. Built the business case around data enrichment &mdash; every upload deepens the moat and feeds the pricing catalog and APIs.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 13: RESULTS
+         =================================================== -->
+    <section class="slide left-slide" data-slide="13">
+        <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;right:-5%;"></div>
+        <div class="orb orb-pink" style="width:200px;height:200px;bottom:15%;left:5%;"></div>
+        <span class="slide-number">13</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">Results</span>
+            <h2 class="reveal">What the flywheel produced</h2>
+
+            <div style="display:flex;flex-direction:column;gap:clamp(0.3rem,0.8vh,0.6rem);margin-top:var(--content-gap);">
+                <div class="result-row reveal">
+                    <span class="result-before">Manual PDFs</span>
+                    <span class="result-arrow">&rarr;</span>
+                    <span class="result-after">2,000+ hours saved</span>
+                    <span class="result-label">And ongoing &mdash; no more manual PDF creation</span>
+                </div>
+                <div class="result-row reveal">
+                    <span class="result-before">~20/day</span>
+                    <span class="result-arrow">&rarr;</span>
+                    <span class="result-after">150+/day</span>
+                    <span class="result-label">Price Check volume</span>
+                </div>
+                <div class="result-row reveal">
+                    <span class="result-before">Siloed data</span>
+                    <span class="result-arrow">&rarr;</span>
+                    <span class="result-after">OpenPrice APIs &amp; MCP</span>
+                    <span class="result-label">Catalog, Scope &amp; Pricing APIs delivering intelligence to partner apps</span>
+                </div>
+                <div class="result-row reveal">
+                    <span class="result-before">$3B in service data</span>
+                    <span class="result-arrow">&rarr;</span>
+                    <span class="result-after">Refreshed &amp; growing daily</span>
+                    <span class="result-label">Every upload replaced stale data and added new data points for APIs</span>
+                </div>
+            </div>
+
+            <p class="callout reveal" style="margin-top:var(--content-gap);">Price Check built the dataset. PriceGraph &mdash; AI agents + human reviewers &mdash; structured it into a pricing catalog. OpenPrice now delivers that intelligence via APIs and MCP server to partner applications.</p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 14: REFLECTION
+         =================================================== -->
+    <section class="slide left-slide" data-slide="14">
+        <div class="orb orb-sage" style="width:280px;height:280px;bottom:10%;right:15%;"></div>
+        <div class="accent-line" style="height:50%;top:25%;right:25%;"></div>
+        <span class="slide-number">14</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">Reflection</span>
+            <h2 class="reveal">What I would do differently</h2>
+
+            <ul class="reflection-list" style="margin-top:var(--content-gap);">
+                <li class="reveal"><strong style="color:var(--text-primary);">De-scope the supplier universe earlier.</strong> We tried to provide some form of value for every contract uploaded, even when data was thin. The degraded experience (negotiation insights only) may have diluted perceived product quality. I&rsquo;d have been more ruthless about which suppliers we launched with.</li>
+                <li class="reveal"><strong style="color:var(--text-primary);">Understand the full buyer lifecycle sooner.</strong> We had a strong SEO strategy that attracted people to pricing data, but getting someone to upload their contract at the right moment was far harder than driving awareness. The timing problem &mdash; reaching buyers when they actually have a document in hand &mdash; was the real conversion challenge.</li>
+                <li class="reveal"><strong style="color:var(--text-primary);">Appreciate contract complexity earlier.</strong> We did a good job supporting POs, quotes, PDFs, renewals, and annuals &mdash; but understanding which data are present at which stage of the buyer journey was more complex than I initially realized. Being clearer upfront about what we&rsquo;d accomplish and when would have set better expectations and sharper phasing.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 15: CLOSING
+         =================================================== -->
+    <section class="slide closing-slide" data-slide="15">
+        <div class="orb orb-pink" style="width:400px;height:400px;top:-10%;right:-5%;"></div>
+        <div class="orb orb-gold" style="width:350px;height:350px;bottom:-5%;left:-3%;"></div>
+        <div class="accent-line" style="height:40%;top:30%;left:15%;"></div>
+        <div class="accent-line" style="height:30%;top:40%;right:18%;"></div>
+
+        <div class="slide-content">
+            <img src="vendr-price-check-assets/hannah.jpg" alt="Hannah Garner" class="presenter-photo reveal" style="width:clamp(60px,10vw,110px);height:clamp(60px,10vw,110px);">
+            <span class="section-label reveal">Thank You</span>
+            <h2 class="reveal" style="font-size:var(--h2-size);">The data compounds.<br>The moat deepens.</h2>
+            <p class="closing-tagline reveal">Price Check wasn&rsquo;t just a feature &mdash; it was the strategic entry point to Vendr&rsquo;s data flywheel. Every upload enriched pricing intelligence. Every share exposed a new person to Price Check. That compounding dataset became the foundation for PriceGraph, OpenPrice APIs &amp; MCP, and an ecosystem of partner integrations built on data no one else had.</p>
+            <p class="title-meta reveal">Hannah Garner</p>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         JAVASCRIPT: Slide Controller + Edit Mode
+         =========================================== -->
+    <script>
+        /* === SLIDE PRESENTATION CONTROLLER === */
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                this.isScrolling = false;
+
+                this.setupIntersectionObserver();
+                this.setupKeyboardNav();
+                this.setupTouchNav();
+                this.setupWheelNav();
+                this.setupProgressBar();
+                this.setupNavDots();
+
+                /* Make first slide visible immediately */
+                this.slides[0].classList.add('visible');
+            }
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            const idx = Array.from(this.slides).indexOf(entry.target);
+                            if (idx !== -1) {
+                                this.currentSlide = idx;
+                                this.updateProgressBar();
+                                this.updateNavDots();
+                            }
+                        }
+                    });
+                }, { threshold: 0.4 });
+
+                this.slides.forEach(slide => observer.observe(slide));
+            }
+
+            setupKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.target.getAttribute('contenteditable') === 'true') return;
+                    if (['ArrowDown', 'ArrowRight', 'Space', 'PageDown'].includes(e.code)) {
+                        e.preventDefault();
+                        this.goToSlide(this.currentSlide + 1);
+                    } else if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.code)) {
+                        e.preventDefault();
+                        this.goToSlide(this.currentSlide - 1);
+                    } else if (e.code === 'Home') {
+                        e.preventDefault();
+                        this.goToSlide(0);
+                    } else if (e.code === 'End') {
+                        e.preventDefault();
+                        this.goToSlide(this.slides.length - 1);
+                    }
+                });
+            }
+
+            setupTouchNav() {
+                let startY = 0;
+                document.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+                document.addEventListener('touchend', (e) => {
+                    const diff = startY - e.changedTouches[0].clientY;
+                    if (Math.abs(diff) > 50) {
+                        this.goToSlide(this.currentSlide + (diff > 0 ? 1 : -1));
+                    }
+                }, { passive: true });
+            }
+
+            setupWheelNav() {
+                let lastWheel = 0;
+                document.addEventListener('wheel', (e) => {
+                    const now = Date.now();
+                    if (now - lastWheel < 800) return;
+                    lastWheel = now;
+                    if (e.deltaY > 30) this.goToSlide(this.currentSlide + 1);
+                    else if (e.deltaY < -30) this.goToSlide(this.currentSlide - 1);
+                }, { passive: true });
+            }
+
+            goToSlide(index) {
+                if (index < 0 || index >= this.slides.length) return;
+                this.currentSlide = index;
+                this.slides[index].scrollIntoView({ behavior: 'smooth' });
+            }
+
+            setupProgressBar() {
+                this.progressBar = document.getElementById('progressBar');
+                this.updateProgressBar();
+            }
+
+            updateProgressBar() {
+                if (this.progressBar) {
+                    const pct = ((this.currentSlide + 1) / this.slides.length) * 100;
+                    this.progressBar.style.width = pct + '%';
+                }
+            }
+
+            setupNavDots() {
+                const container = document.getElementById('navDots');
+                this.slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('nav-dot');
+                    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    container.appendChild(dot);
+                });
+                this.navDotElements = container.querySelectorAll('.nav-dot');
+            }
+
+            updateNavDots() {
+                if (!this.navDotElements) return;
+                this.navDotElements.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === this.currentSlide);
+                });
+            }
+        }
+
+        /* === INLINE EDITOR === */
+        class InlineEditor {
+            constructor() {
+                this.isActive = false;
+                this.editables = document.querySelectorAll('h1, h2, h3, p, span, li, strong');
+            }
+
+            toggleEditMode() {
+                this.isActive = !this.isActive;
+                const btn = document.getElementById('editToggle');
+                btn.classList.toggle('active', this.isActive);
+                this.editables.forEach(el => {
+                    if (this.isActive) {
+                        el.setAttribute('contenteditable', 'true');
+                    } else {
+                        el.removeAttribute('contenteditable');
+                    }
+                });
+                /* Save on deactivate */
+                if (!this.isActive) this.save();
+            }
+
+            save() {
+                const data = {};
+                this.editables.forEach((el, i) => {
+                    data[i] = el.innerHTML;
+                });
+                localStorage.setItem('vendr-presentation-edits', JSON.stringify(data));
+            }
+
+            load() {
+                const saved = localStorage.getItem('vendr-presentation-edits');
+                if (!saved) return;
+                try {
+                    const data = JSON.parse(saved);
+                    this.editables.forEach((el, i) => {
+                        if (data[i] !== undefined) el.innerHTML = data[i];
+                    });
+                } catch (e) { /* ignore */ }
+            }
+        }
+
+        /* === INITIALIZE === */
+        const presentation = new SlidePresentation();
+        const editor = new InlineEditor();
+        editor.load();
+
+        /* Edit toggle hover behavior */
+        const hotzone = document.getElementById('editHotzone');
+        const editToggle = document.getElementById('editToggle');
+        let hideTimeout = null;
+
+        hotzone.addEventListener('mouseenter', () => {
+            clearTimeout(hideTimeout);
+            editToggle.classList.add('show');
+        });
+        hotzone.addEventListener('mouseleave', () => {
+            hideTimeout = setTimeout(() => {
+                if (!editor.isActive) editToggle.classList.remove('show');
+            }, 400);
+        });
+        editToggle.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); });
+        editToggle.addEventListener('mouseleave', () => {
+            hideTimeout = setTimeout(() => {
+                if (!editor.isActive) editToggle.classList.remove('show');
+            }, 400);
+        });
+
+        editToggle.addEventListener('click', () => { editor.toggleEditMode(); });
+        hotzone.addEventListener('click', () => { editor.toggleEditMode(); });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 'e' || e.key === 'E') && !e.target.getAttribute('contenteditable')) {
+                editor.toggleEditMode();
+            }
+            /* Ctrl/Cmd + S to save */
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                editor.save();
+            }
+        });
+    </script>
+</body>
+</html>
