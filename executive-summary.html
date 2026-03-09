@@ -347,6 +347,88 @@
             font-size: var(--small-size);
             color: var(--text-secondary);
         }
+
+        /* ===========================================
+           PRESENTER PHOTO (Title slide)
+           =========================================== */
+        .presenter-photo {
+            width: clamp(80px, 12vw, 140px);
+            height: clamp(80px, 12vw, 140px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-gold);
+            opacity: 0.9;
+        }
+        .title-label {
+            font-family: var(--font-body);
+            font-size: var(--label-size);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+        .title-subtitle {
+            font-family: var(--font-display);
+            font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 600px;
+        }
+        .title-meta {
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* ===========================================
+           TRIAD LAYOUT (Team slide)
+           =========================================== */
+        .triad-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(1rem, 3vw, 3rem);
+            flex-wrap: wrap;
+        }
+        .triad-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(4px, 0.6vh, 8px);
+        }
+        .triad-circle {
+            width: clamp(50px, 8vw, 80px);
+            height: clamp(50px, 8vw, 80px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+            font-weight: 600;
+            border: 2px solid;
+            overflow: hidden;
+        }
+        .triad-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .triad-circle.pm { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .triad-circle.design { border-color: var(--accent-pink); color: var(--accent-pink); }
+        .triad-circle.eng { border-color: var(--accent-sage); color: var(--accent-sage); }
+        .triad-circle.data { border-color: var(--accent-terracotta); color: var(--accent-terracotta); }
+        .triad-label {
+            font-size: var(--label-size);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .triad-connector {
+            width: clamp(20px, 4vw, 50px);
+            height: 1px;
+            background: rgba(200, 184, 150, 0.15);
+        }
     </style>
 </head>
 <body>
@@ -361,19 +443,15 @@
          SLIDE 0: TITLE — WHO I AM
          =================================================== -->
     <section class="slide title-slide" data-slide="0">
-        <div class="orb orb-gold" style="width:500px;height:500px;top:-10%;right:-8%;"></div>
-        <div class="orb orb-pink" style="width:300px;height:300px;bottom:10%;left:-5%;"></div>
+        <div class="orb orb-pink" style="width:400px;height:400px;top:-10%;right:-5%;"></div>
+        <div class="orb orb-gold" style="width:300px;height:300px;bottom:-5%;left:-3%;"></div>
 
         <div class="slide-content">
-            <span class="section-label reveal">Executive Summary</span>
-            <h1 class="reveal">Price Check</h1>
-            <p class="body-text reveal" style="text-align:center;margin:0 auto;max-width:560px;color:var(--text-secondary);">
-                Turning $3B in transaction data into a free, self-serve pricing tool for SaaS buyers
-            </p>
-            <div style="margin-top:clamp(16px,2vh,32px);" class="reveal">
-                <span class="title-name">Hannah Garner</span>
-                <p class="title-role">Product Manager, Vendr</p>
-            </div>
+            <img src="vendr-price-check-assets/hannah.jpg" alt="Hannah Garner" class="presenter-photo reveal">
+            <span class="title-label reveal">Portfolio Case Study</span>
+            <h1 class="reveal" style="max-width:700px;">Price Check</h1>
+            <p class="title-subtitle reveal">Turning $3B in locked transaction data into a free pricing tool for every SaaS buyer</p>
+            <p class="title-meta reveal">Hannah Garner &middot; Staff Product Manager</p>
         </div>
     </section>
 
@@ -476,33 +554,48 @@
 
         <div class="slide-content centered">
             <span class="section-label reveal">The Team</span>
-            <h2 class="reveal">Cross-functional, tightly coupled</h2>
-            <p class="body-text reveal" style="text-align:center;margin:0 auto;max-width:620px;">
-                I led product strategy, discovery, and delivery &mdash; working directly with a small, focused team that shipped together every week.
-            </p>
+            <h2 class="reveal">Who built this</h2>
 
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.5vw,20px);margin-top:var(--content-gap);max-width:800px;margin-left:auto;margin-right:auto;">
-                <div class="insight-card reveal" style="text-align:center;">
-                    <strong style="color:var(--accent-gold);">Product</strong>
-                    <span>Strategy, discovery, evals, and customer signal</span>
+            <div class="triad-visual reveal" style="margin-top:var(--content-gap);">
+                <div class="triad-node">
+                    <div class="triad-circle pm"><img src="vendr-price-check-assets/hannah.jpg" alt="Hannah Garner"></div>
+                    <span class="triad-label">Hannah &middot; Staff PM</span>
                 </div>
-                <div class="insight-card reveal" style="text-align:center;">
-                    <strong style="color:var(--accent-pink);">Engineering</strong>
-                    <span>UI development, upload flow, integration infrastructure</span>
+                <div class="triad-connector"></div>
+                <div class="triad-node">
+                    <div class="triad-circle design"><img src="vendr-price-check-assets/fabri.jpg" alt="Fabri, Staff Designer"></div>
+                    <span class="triad-label">Fabri &middot; Staff Designer</span>
                 </div>
-                <div class="insight-card reveal" style="text-align:center;">
-                    <strong style="color:var(--accent-sage);">Data Science</strong>
-                    <span>Pricing models, coverage tiers, degradation logic</span>
+                <div class="triad-connector"></div>
+                <div class="triad-node">
+                    <div class="triad-circle eng"><img src="vendr-price-check-assets/andrew.jpg" alt="Andrew, Engineering Manager"></div>
+                    <span class="triad-label">Andrew &middot; Eng Manager</span>
                 </div>
-                <div class="insight-card reveal" style="text-align:center;">
-                    <strong style="color:var(--accent-terracotta);">Design</strong>
-                    <span>UX patterns, visual design, information hierarchy</span>
+                <div class="triad-connector"></div>
+                <div class="triad-node">
+                    <div class="triad-circle data"><img src="vendr-price-check-assets/zach.jpg" alt="Zach, VP of Data"></div>
+                    <span class="triad-label">Zach &middot; VP of Data</span>
                 </div>
             </div>
 
-            <p class="callout reveal" style="margin-top:var(--content-gap);margin-left:auto;margin-right:auto;">
-                Shared instrumentation meant the whole team could see what was working &mdash; no handoffs, no waiting for reports.
-            </p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.3rem,0.8vw,0.6rem) clamp(0.6rem,1.5vw,1.2rem);margin-top:var(--content-gap);max-width:900px;margin-left:auto;margin-right:auto;" class="reveal">
+                <div style="border-left:2px solid var(--accent-gold);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-gold);font-size:var(--small-size);">Hannah &mdash; PM</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Set the strategic direction and rollout strategy &mdash; from manual service to self-serve product to data platform. Embedded with SaaS procurement specialists to learn the domain. Defined the phased rollout (in-product &rarr; marketplace &rarr; share &rarr; APIs) and owned the outcomes end to end.</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-pink);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-pink);font-size:var(--small-size);">Fabri &mdash; Design</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Designed the graceful degradation UX &mdash; making complex pricing data feel simple and trustworthy. Bell curve visualization, no-auth share page, tiered experience system.</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-sage);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-sage);font-size:var(--small-size);">Andrew &mdash; Engineering</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Led the team through four coupled releases. Built internal tooling, async delivery pipeline, and automated extraction with Extend. Took us from days to minutes.</p>
+                </div>
+                <div style="border-left:2px solid var(--accent-terracotta);padding-left:clamp(6px,0.8vw,10px);">
+                    <strong style="color:var(--accent-terracotta);font-size:var(--small-size);">Zach &mdash; Data</strong>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:2px;">Owned the pricing schema, SKU mapping, scoring models, and data coverage tiers. Built the intelligence layer that became the foundation for PriceGraph and OpenPrice.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -622,21 +715,19 @@
          SLIDE 8: CUSTOMER OUTCOMES
          =================================================== -->
     <section class="slide" data-slide="8">
-        <div class="orb orb-sage" style="width:400px;height:400px;bottom:-5%;left:-5%;"></div>
-        <div class="orb orb-pink" style="width:250px;height:250px;top:10%;right:10%;"></div>
+        <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;right:-5%;"></div>
+        <div class="orb orb-pink" style="width:200px;height:200px;bottom:15%;left:5%;"></div>
         <span class="slide-number">8</span>
 
         <div class="slide-content centered">
-            <span class="section-label reveal">Customer Outcomes</span>
+            <span class="section-label reveal">Results</span>
             <h2 class="reveal">Am I getting a fair price?</h2>
-            <p class="body-text reveal" style="text-align:center;margin:0 auto;max-width:620px;">
-                That's the question we set out to answer.
-            </p>
+            <p class="body-text reveal" style="text-align:center;margin:0 auto;max-width:720px;color:var(--text-secondary);">That&rsquo;s the question we set out to answer. Price Check gave buyers the answer &mdash; fast, free, and backed by real transaction data.</p>
 
-            <div class="stat-grid reveal" style="max-width:800px;margin-left:auto;margin-right:auto;">
+            <div class="stat-grid reveal" style="max-width:900px;margin-left:auto;margin-right:auto;">
                 <div>
                     <span class="stat-number" style="color:var(--accent-gold);">Under 1 min</span>
-                    <span class="stat-label">Contract upload to "am I overpaying?" answered</span>
+                    <span class="stat-label">Contract upload to &ldquo;am I overpaying?&rdquo; answered</span>
                 </div>
                 <div>
                     <span class="stat-number" style="color:var(--accent-pink);">4.5-star avg</span>
@@ -649,11 +740,7 @@
             </div>
 
             <p class="callout reveal" style="margin-top:var(--content-gap);margin-left:auto;margin-right:auto;">
-                Price Check fed a marketplace that crossed $1B in annual volume &mdash; serving 5,000+ companies buying software fair, fast, and easy.
-            </p>
-
-            <p class="reveal" style="margin-top:clamp(12px,2vh,24px);color:var(--text-muted);font-size:var(--small-size);font-style:italic;text-align:center;">
-                The process: start with a concierge experiment, instrument everything, ship small coupled releases, and let real usage tell you what to build next.
+                Price Check fed a marketplace that crossed $1B in annual volume &mdash; serving 5,000+ companies and 9,000+ department heads buying software fair, fast, and easy.
             </p>
         </div>
     </section>
