@@ -4,7 +4,9 @@ A presentation walking through how Vendr turned $3B+ in locked SaaS transaction 
 
 ## Viewing
 
-Open `index.html` in a browser or visit the live site. Navigate with arrow keys, scroll, or the nav dots on the right.
+**Live:** [https://hgarner2022.github.io/vendr-price-check/](https://hgarner2022.github.io/vendr-price-check/)
+
+Or open `index.html` locally. Navigate with arrow keys, scroll, or the nav dots on the right.
 
 ## Project
 
