@@ -1,5 +1,5 @@
 # Price Check — Executive Summary Script
-### Loom recording · ~4–5 minutes · 9 slides
+### Loom recording · ~5 minutes · 10 slides
 
 ---
 
@@ -34,7 +34,16 @@ SaaS pricing is opaque by design. Vendors don't publish real prices. Every deal 
 
 ---
 
-## SLIDE 3: Hypothesis
+## SLIDE 3: Who We're Building For
+**[~25 seconds]**
+
+So who exactly were we building this for? Picture the department head — the IT director, the head of finance, the marketing lead. They buy software for their teams, but it's not their full-time job. And right now, they're staring at a contract that's already been through the sales cycle. They have a number. They just have no idea if it's a good one.
+
+And here's the thing — the vendor does this every single day, across hundreds of clients. The buyer does it once every few years. Sixty percent of vendors deliberately mask price increases in their contracts. So the information asymmetry is massive. And the result? Over eighty percent of companies overpay. They don't need a procurement team. They just need confidence.
+
+---
+
+## SLIDE 4: Hypothesis
 **[~30 seconds]**
 
 So our hypothesis was pretty simple. What if we just... gave the data away?
@@ -45,7 +54,7 @@ It's one of those rare product bets where being generous is also being strategic
 
 ---
 
-## SLIDE 4: Team
+## SLIDE 5: Team
 **[~25 seconds]**
 
 This was a small, senior team — four people. Myself on product, Fabri on design, Andrew leading engineering, and Zach as our VP of Data.
@@ -54,7 +63,7 @@ My role was setting the strategic direction — from manual concierge service al
 
 ---
 
-## SLIDE 5: Strategy
+## SLIDE 6: Strategy
 **[~35 seconds]**
 
 Our approach was: ship small, learn fast, and let each release compound on the last.
@@ -67,7 +76,7 @@ Four releases. Three months. Each one built on what we learned from the last.
 
 ---
 
-## SLIDE 6: The Product
+## SLIDE 7: The Product
 **[~25 seconds]**
 
 And here's what we shipped. Upload a contract — any contract, any vendor — and in under a minute you get a full price assessment. A bell curve showing where your price sits versus the market. An AI-generated summary in plain English. Competitor alternatives. Negotiation tips specific to your deal.
@@ -76,7 +85,7 @@ The goal was: you should be able to walk into a renewal meeting with more data t
 
 ---
 
-## SLIDE 7: Challenges
+## SLIDE 8: Challenges
 **[~35 seconds]**
 
 Now, it wasn't all smooth sailing. Three big challenges.
@@ -89,7 +98,7 @@ And third, extraction accuracy. Getting our AI to reliably parse ten-plus docume
 
 ---
 
-## SLIDE 8: Results
+## SLIDE 9: Results
 **[~30 seconds]**
 
 So — am I getting a fair price? That was the question. And we answered it.
@@ -104,7 +113,7 @@ Thank you.
 
 ## DELIVERY NOTES
 
-- **Total time**: ~4 minutes 20 seconds at natural pace
+- **Total time**: ~4 minutes 45 seconds at natural pace
 - **Tone**: Warm, confident, a little funny — not a standup set, just a person who enjoys what they built
 - **Pacing tip**: The humor lands better if you don't rush it. Pause after the jokes ("a very fancy copy-paste operation") and let them breathe
 - **Loom tip**: Keep slides advancing ~2 seconds before you start talking about them so the viewer has a moment to read the headline
