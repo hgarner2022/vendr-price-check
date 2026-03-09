@@ -19,27 +19,29 @@ Price Check was our answer to that.
 
 So, quick context on Vendr. Vendr started as an always-service model — we sat alongside buyers and helped them negotiate their software contracts. Think of it as hiring someone to argue with Salesforce on your behalf. Which, honestly? Everyone deserves that.
 
-The result of doing that for years was an incredible asset: over three billion dollars in real transaction data, across five thousand companies and twenty thousand SaaS products. But here's the thing — all of that knowledge was locked inside our service team. If you weren't already a customer, you were on your own. And that never sat right with us. The opportunity was clear: what if we could put that power in every buyer's hands?
+The result of doing that across twenty thousand deals was an incredible asset: over three billion dollars in real transaction data, spanning five thousand companies and twenty-six hundred suppliers — with two hundred and fifty million dollars in documented savings for our customers. But here's the thing — all of that knowledge was locked inside our service team. If you weren't already a customer, you were on your own. And that never sat right with us. The opportunity was clear: what if we could put that power in every buyer's hands?
 
 ---
 
 ## SLIDE 2: Problem
-**[~30 seconds]**
+**[~40 seconds]**
 
-Here's the problem we were solving. Picture this: you're a head of IT. You've just been handed a $400K Salesforce contract. Your CFO looks at you and says, "is this a good price?" And your honest answer is... "I have absolutely no idea."
+Here's the problem we were solving. The average company uses over two hundred and fifty SaaS products. That's two hundred and fifty contracts, two hundred and fifty renewals, two hundred and fifty chances to overpay. And most companies do — by twenty to twenty-five percent.
+
+Picture this: you're a head of sales. You've just been handed a $400K Salesloft contract. Your CFO looks at you and says, "is this a good price?" And your honest answer is... "I have absolutely no idea."
 
 That's a terrible position to be in. And it's not your fault.
 
-SaaS pricing is opaque by design. Vendors don't publish real prices. Every deal is "custom." There are no public benchmarks. So buyers are Googling, asking around on Slack, checking G2 — and ultimately just... guessing. Eighty percent of companies overpay for software. And they never even know it. That's not a skills problem — it's an information problem. And we wanted to fix it.
+SaaS pricing is opaque by design. Vendors don't publish real prices. Every deal is "custom." Eighty-nine percent of SaaS contracts include automatic renewal clauses — and roughly a third of average SaaS spend goes to waste through accidental renewals alone. So buyers are Googling, asking around on Slack, checking G2 — and ultimately just... guessing. That's not a skills problem — it's an information problem. And we wanted to fix it.
 
 ---
 
 ## SLIDE 3: Who We're Building For
-**[~25 seconds]**
+**[~30 seconds]**
 
-So who exactly were we building this for? Picture the department head — the IT director, the head of finance, the marketing lead. These are smart, capable people. They buy software for their teams, but negotiating vendor contracts is not their full-time job. And right now, they're staring at a renewal that's already been through the sales cycle. They have a number. They just have no idea if it's a good one.
+So who exactly were we building this for? Picture the department head — the IT director, the head of finance, the marketing lead. These are smart, capable people. They buy software for their teams, but negotiating vendor contracts is not their full-time job. A typical enterprise buyer is managing three hundred tools and three hundred and fifty thousand dollars a month in software spend. And right now, they're staring at a renewal that's already been through the sales cycle. They have a number. They just have no idea if it's a good one.
 
-And here's what makes it so unfair — the vendor does this every single day, across hundreds of clients. The buyer does it once every few years. Sixty percent of vendors deliberately mask price increases in their contracts. The deck is stacked against the buyer from day one. And the result? Over eighty percent of companies overpay. These folks don't need a procurement team. They just need someone in their corner. They need confidence.
+And here's what makes it so unfair — the vendor does this every single day, across hundreds of clients. The buyer does it once every few years. Sixty percent of vendors deliberately mask price increases in their contracts. In 2024 alone, over half of all renewals came in at a higher price than the year before. The deck is stacked against the buyer from day one. These folks don't need a procurement team. They just need someone in their corner. They need confidence.
 
 ---
 
@@ -99,13 +101,13 @@ And third, extraction accuracy. Getting our AI to reliably parse ten-plus docume
 ---
 
 ## SLIDE 9: Results
-**[~30 seconds]**
+**[~35 seconds]**
 
 So — am I getting a fair price? That was the question every buyer was asking. And we gave them a real answer.
 
-Under one minute from contract upload to a full pricing assessment. A 4.5-star average rating — and anything below three stars triggered a personal follow-up from the team, because we genuinely wanted to understand what fell short. Every piece of feedback made us better for the next person.
+Under one minute from contract upload to a full pricing assessment. A 4.5-star average rating — and anything below three stars triggered a personal follow-up from the team, because we genuinely wanted to understand what fell short. Every piece of feedback made us better for the next person. Our CEO Ryan showed it to a CFO who said, "it's like Waze, but for buying SaaS." That's exactly the feeling we were going for.
 
-Ninety million dollars a month in AI-powered pricing recommendations running against live contracts. Price Check fed a marketplace that crossed one billion dollars in annual volume — serving over five thousand companies and nine thousand department heads buying software fair, fast, and with the confidence they deserved from the start.
+Ninety million dollars a month in AI-powered pricing recommendations running against live contracts. Customers who used our data saved an average of sixteen percent on completed deals. Price Check fed a marketplace that crossed one billion dollars in annual volume — serving over five thousand companies and nine thousand department heads buying software fair, fast, and with the confidence they deserved from the start.
 
 Thank you.
 
@@ -113,7 +115,7 @@ Thank you.
 
 ## DELIVERY NOTES
 
-- **Total time**: ~4 minutes 45 seconds at natural pace
+- **Total time**: ~5 minutes 15 seconds at natural pace
 - **Tone**: Friendly, confident, deeply empathetic — you care about the buyer's experience and it shows. Light humor still lands, but the throughline is "we built this because people deserved better"
 - **Pacing tip**: The humor lands better if you don't rush it. Pause after the jokes ("a very fancy copy-paste operation") and let them breathe
 - **Loom tip**: Keep slides advancing ~2 seconds before you start talking about them so the viewer has a moment to read the headline
