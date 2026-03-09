@@ -1432,19 +1432,61 @@
             <h2 class="reveal">Closing the loop</h2>
             <p class="body-text reveal" style="text-align:center;margin:0 auto;max-width:720px;">Every Price Check ended with a rating. Below 3 stars triggered a personal email from the team &mdash; we wanted to understand what fell short, not just count completions.</p>
 
-            <!-- Feedback screenshots side by side -->
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,48px);align-items:start;margin-top:var(--content-gap);width:100%;max-width:900px;margin-left:auto;margin-right:auto;">
-                <div class="reveal" style="text-align:center;">
-                    <img src="vendr-price-check-assets/feedback%203%20stars.png" alt="3-star feedback — structured improvement options" style="width:100%;max-height:min(48vh,400px);object-fit:contain;border-radius:12px;border:1px solid rgba(138,154,122,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
-                    <p style="color:var(--accent-terracotta);font-size:var(--body-size);font-weight:500;margin-top:clamp(8px,0.8vh,12px);">&le; 3 stars &rarr; structured diagnosis</p>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:4px;">What specifically missed? Data accuracy, range too wide, irrelevant comps &mdash; each option mapped to a product fix.</p>
+            <!-- Animated feedback flow -->
+            <div class="reveal" style="margin-top:var(--content-gap);display:flex;flex-direction:column;align-items:center;gap:clamp(12px,1.5vh,20px);width:100%;">
+                <div style="position:relative;width:min(60vh,560px);aspect-ratio:1440/900;border-radius:16px;overflow:hidden;box-shadow:0 16px 50px rgba(0,0,0,0.4);border:1px solid rgba(138,154,122,0.12);">
+                    <img src="vendr-price-check-assets/05.png" class="feedback-frame feedback-active" alt="Feedback prompt — empty stars" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.6s ease;">
+                    <img src="vendr-price-check-assets/06.png" class="feedback-frame" alt="Feedback — 4 stars selected" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s ease;">
+                    <img src="vendr-price-check-assets/07.png" class="feedback-frame" alt="Feedback — open text prompt" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s ease;">
+                    <img src="vendr-price-check-assets/08.png" class="feedback-frame" alt="Feedback — thank you" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s ease;">
                 </div>
-                <div class="reveal" style="text-align:center;">
-                    <img src="vendr-price-check-assets/feedback%204%20starts.png" alt="4-star feedback — open-ended improvement prompt" style="width:100%;max-height:min(48vh,400px);object-fit:contain;border-radius:12px;border:1px solid rgba(138,154,122,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
-                    <p style="color:var(--accent-sage);font-size:var(--body-size);font-weight:500;margin-top:clamp(8px,0.8vh,12px);">4+ stars &rarr; open-ended prompt</p>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:4px;">&ldquo;What would make this more useful?&rdquo; &mdash; surfaced expansion ideas directly from satisfied users.</p>
+                <!-- Step labels -->
+                <div style="display:flex;gap:clamp(8px,1.5vw,16px);align-items:center;">
+                    <span class="feedback-dot feedback-dot-active" data-step="0" style="width:10px;height:10px;border-radius:50%;background:var(--accent-gold);opacity:1;transition:opacity 0.3s;cursor:pointer;"></span>
+                    <span class="feedback-dot" data-step="1" style="width:10px;height:10px;border-radius:50%;background:var(--accent-gold);opacity:0.3;transition:opacity 0.3s;cursor:pointer;"></span>
+                    <span class="feedback-dot" data-step="2" style="width:10px;height:10px;border-radius:50%;background:var(--accent-gold);opacity:0.3;transition:opacity 0.3s;cursor:pointer;"></span>
+                    <span class="feedback-dot" data-step="3" style="width:10px;height:10px;border-radius:50%;background:var(--accent-gold);opacity:0.3;transition:opacity 0.3s;cursor:pointer;"></span>
                 </div>
+                <p class="feedback-caption" style="color:var(--text-secondary);font-size:var(--body-size);text-align:center;min-height:1.5em;transition:opacity 0.4s;">Rate your experience</p>
             </div>
+
+            <script>
+            (function() {
+                const frames = document.querySelectorAll('[data-slide="11"] .feedback-frame');
+                const dots = document.querySelectorAll('[data-slide="11"] .feedback-dot');
+                const caption = document.querySelector('[data-slide="11"] .feedback-caption');
+                const captions = ['Rate your experience', '4 stars selected', '"What would make this more useful?"', 'Thank you for your feedback'];
+                let current = 0;
+                let interval;
+
+                function showStep(n) {
+                    frames.forEach((f, i) => { f.style.opacity = i === n ? '1' : '0'; f.classList.toggle('feedback-active', i === n); });
+                    dots.forEach((d, i) => { d.style.opacity = i === n ? '1' : '0.3'; d.classList.toggle('feedback-dot-active', i === n); });
+                    caption.style.opacity = '0';
+                    setTimeout(() => { caption.textContent = captions[n]; caption.style.opacity = '1'; }, 200);
+                    current = n;
+                }
+
+                function startLoop() {
+                    interval = setInterval(() => showStep((current + 1) % 4), 2200);
+                }
+
+                dots.forEach(d => d.addEventListener('click', () => {
+                    clearInterval(interval);
+                    showStep(parseInt(d.dataset.step));
+                    startLoop();
+                }));
+
+                // Start when slide becomes visible
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) { showStep(0); startLoop(); }
+                        else { clearInterval(interval); }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(document.querySelector('[data-slide="11"]'));
+            })();
+            </script>
 
             <p class="callout reveal" style="margin-top:var(--content-gap);font-size:var(--body-size);">Average rating: 4.5 stars. The feedback loop didn&rsquo;t just measure satisfaction &mdash; it told us exactly what to build next and confirmed when we&rsquo;d earned trust.</p>
         </div>
