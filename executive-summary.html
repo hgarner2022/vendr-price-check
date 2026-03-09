@@ -291,6 +291,26 @@
             font-size: var(--small-size);
         }
 
+        /* Persona card */
+        .persona-photo {
+            width: clamp(50px, 8vw, 80px);
+            height: clamp(50px, 8vw, 80px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-gold);
+        }
+        .persona-name {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .persona-role {
+            color: var(--text-secondary);
+            font-size: var(--small-size);
+            line-height: 1.5;
+        }
+
         /* ===========================================
            TITLE SLIDE SPECIAL
            =========================================== */
@@ -518,11 +538,57 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 3: HYPOTHESIS
+         SLIDE 3: WHO WE'RE BUILDING FOR
          =================================================== -->
     <section class="slide" data-slide="3">
-        <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;left:-5%;"></div>
+        <div class="orb orb-pink" style="width:280px;height:280px;top:15%;right:10%;"></div>
         <span class="slide-number">3</span>
+
+        <div class="slide-content" style="max-width:min(96vw,1100px);margin:0 auto;">
+            <span class="section-label reveal">Who we&rsquo;re building for</span>
+            <h2 class="reveal" style="max-width:700px;">&ldquo;We&rsquo;re about to sign and I have<br>no idea if this price is fair.&rdquo;</h2>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:start;margin-top:var(--content-gap);width:100%;">
+                <!-- Left: persona card -->
+                <div class="reveal">
+                    <div style="background:var(--bg-card);border:1px solid rgba(200,184,150,0.08);border-radius:12px;padding:clamp(1rem,2vw,1.75rem);display:flex;flex-direction:column;gap:clamp(0.75rem,1.2vh,1rem);">
+                        <div style="display:flex;align-items:center;gap:clamp(0.75rem,1.5vw,1.25rem);">
+                            <img src="vendr-price-check-assets/persona.jpg" alt="Buyer persona" class="persona-photo">
+                            <div>
+                                <span class="persona-name" style="display:block;">The department head</span>
+                                <span class="persona-role">They buy software for their teams &mdash; but it&rsquo;s not their full-time job. IT directors, heads of finance, marketing leads. Smart, busy, and making high-stakes purchasing decisions with almost no pricing data.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: their reality at the decision point -->
+                <div class="reveal" style="display:flex;flex-direction:column;gap:clamp(0.75rem,1.2vh,1rem);">
+                    <div style="border-left:3px solid var(--accent-gold);padding-left:clamp(10px,1.2vw,16px);">
+                        <strong style="color:var(--accent-gold);font-size:var(--body-size);">They have a quote &mdash; but no benchmark</strong>
+                        <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:3px;">They&rsquo;ve been through the sales cycle. A contract is in front of them. But there&rsquo;s no public data to tell them if the number is fair.</p>
+                    </div>
+                    <div style="border-left:3px solid var(--accent-terracotta);padding-left:clamp(10px,1.2vw,16px);">
+                        <strong style="color:var(--accent-terracotta);font-size:var(--body-size);">The information asymmetry is massive</strong>
+                        <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:3px;">Vendors negotiate these deals daily across hundreds of clients. Buyers do it once every few years. 60% of vendors deliberately mask price increases.</p>
+                    </div>
+                    <div style="border-left:3px solid var(--accent-sage);padding-left:clamp(10px,1.2vw,16px);">
+                        <strong style="color:var(--accent-sage);font-size:var(--body-size);">Overpaying is the default</strong>
+                        <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:3px;">80%+ of companies overpay for software. Without benchmarks, you&rsquo;re likely paying 20&ndash;30% above market &mdash; and you&rsquo;d never know it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="callout reveal" style="margin-top:var(--content-gap);margin-left:auto;margin-right:auto;">They don&rsquo;t need a procurement team. They need confidence &mdash; an instant, data-backed answer before they sign.</p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 4: HYPOTHESIS
+         =================================================== -->
+    <section class="slide" data-slide="4">
+        <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;left:-5%;"></div>
+        <span class="slide-number">4</span>
 
         <div class="slide-content centered">
             <span class="section-label reveal">Hypothesis</span>
@@ -546,11 +612,11 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 4: THE TEAM
+         SLIDE 5: THE TEAM
          =================================================== -->
-    <section class="slide" data-slide="4">
+    <section class="slide" data-slide="5">
         <div class="orb orb-pink" style="width:300px;height:300px;top:-5%;left:10%;"></div>
-        <span class="slide-number">4</span>
+        <span class="slide-number">5</span>
 
         <div class="slide-content centered">
             <span class="section-label reveal">The Team</span>
@@ -600,11 +666,11 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 5: STRATEGY — ITERATIVE PROCESS
+         SLIDE 6: STRATEGY — ITERATIVE PROCESS
          =================================================== -->
-    <section class="slide" data-slide="5">
+    <section class="slide" data-slide="6">
         <div class="orb orb-sage" style="width:300px;height:300px;bottom:10%;right:5%;"></div>
-        <span class="slide-number">5</span>
+        <span class="slide-number">6</span>
 
         <div class="slide-content">
             <span class="section-label reveal">Strategy</span>
@@ -639,11 +705,11 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 6: FINISHED PRODUCT
+         SLIDE 7: FINISHED PRODUCT
          =================================================== -->
-    <section class="slide" data-slide="6">
+    <section class="slide" data-slide="7">
         <div class="orb orb-pink" style="width:350px;height:350px;top:3%;left:3%;"></div>
-        <span class="slide-number">6</span>
+        <span class="slide-number">7</span>
 
         <div class="slide-content centered">
             <span class="section-label reveal">The Product</span>
@@ -660,11 +726,11 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 7: CHALLENGES
+         SLIDE 8: CHALLENGES
          =================================================== -->
-    <section class="slide" data-slide="7">
+    <section class="slide" data-slide="8">
         <div class="orb orb-gold" style="width:300px;height:300px;top:10%;right:5%;"></div>
-        <span class="slide-number">7</span>
+        <span class="slide-number">8</span>
 
         <div class="slide-content">
             <span class="section-label reveal">Challenges</span>
@@ -712,12 +778,12 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 8: CUSTOMER OUTCOMES
+         SLIDE 9: CUSTOMER OUTCOMES
          =================================================== -->
-    <section class="slide" data-slide="8">
+    <section class="slide" data-slide="9">
         <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;right:-5%;"></div>
         <div class="orb orb-pink" style="width:200px;height:200px;bottom:15%;left:5%;"></div>
-        <span class="slide-number">8</span>
+        <span class="slide-number">9</span>
 
         <div class="slide-content centered">
             <span class="section-label reveal">Results</span>
