@@ -1593,12 +1593,44 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 14: REFLECTION
+         SLIDE 14: PRICEGRAPH — THE HARD PROBLEM
          =================================================== -->
     <section class="slide left-slide" data-slide="14">
+        <div class="orb orb-gold" style="width:300px;height:300px;top:-5%;left:-5%;"></div>
+        <div class="orb orb-sage" style="width:200px;height:200px;bottom:10%;right:10%;"></div>
+        <span class="slide-number">14</span>
+
+        <div class="slide-content">
+            <span class="section-label reveal">Behind the API</span>
+            <h2 class="reveal">PriceGraph: why &ldquo;just throw AI at it&rdquo; doesn&rsquo;t work</h2>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);margin-top:var(--content-gap);align-items:center;">
+                <!-- Left: the problem -->
+                <div class="reveal">
+                    <p style="color:var(--text-secondary);font-size:var(--body-size);line-height:1.7;margin-bottom:clamp(8px,1.5vh,16px);">Order forms are a mess. Line items get renamed between customers. Products show up &ldquo;free&rdquo; in bundles but carry hidden costs. What one vendor calls a &ldquo;seat,&rdquo; another calls a &ldquo;license.&rdquo;</p>
+                    <p style="color:var(--text-primary);font-size:var(--body-size);line-height:1.7;margin-bottom:clamp(8px,1.5vh,16px);">LLMs can parse the text &mdash; but they don&rsquo;t normalize messy commercial data into something you can actually compare. Until you do that, you don&rsquo;t get transparency. You get <em style="color:var(--accent-terracotta);">averages that mislead</em>.</p>
+                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.6;font-style:italic;">PriceGraph is the ontology-driven intelligence layer that turns raw contracts into structured, apples-to-apples benchmarks. Not more data &mdash; <strong style="color:var(--accent-gold);">smarter data</strong>.</p>
+                </div>
+
+                <!-- Right: the diagram -->
+                <div class="reveal" style="background:rgba(255,255,255,0.03);border:1px solid rgba(201,184,150,0.1);border-radius:12px;overflow:hidden;padding:clamp(8px,1vw,16px);">
+                    <img src="vendr-price-check-assets/PriceGraph.png" alt="PriceGraph engine: unstructured pricing inputs → normalized benchmarks via ontology-driven intelligence" style="width:100%;max-height:min(40vh,320px);object-fit:contain;border-radius:6px;">
+                </div>
+            </div>
+
+            <p class="reveal" style="margin-top:clamp(0.5rem,1.5vh,1rem);font-family:var(--font-display);font-style:italic;font-size:var(--body-size);color:var(--text-secondary);">
+                The response has been immediate: procurement platforms, legal tech, consultants, cyber-risk tools &mdash; all looking to bring pricing directly into their products. <strong style="color:var(--accent-gold);">Price transparency is coming to B2B. Fast.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================================
+         SLIDE 15: REFLECTION
+         =================================================== -->
+    <section class="slide left-slide" data-slide="15">
         <div class="orb orb-sage" style="width:280px;height:280px;bottom:10%;right:15%;"></div>
         <div class="accent-line" style="height:50%;top:25%;right:25%;"></div>
-        <span class="slide-number">14</span>
+        <span class="slide-number">15</span>
 
         <div class="slide-content">
             <span class="section-label reveal">Reflection</span>
@@ -1613,9 +1645,9 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 15: CLOSING
+         SLIDE 16: CLOSING
          =================================================== -->
-    <section class="slide closing-slide" data-slide="15">
+    <section class="slide closing-slide" data-slide="16">
         <div class="orb orb-pink" style="width:400px;height:400px;top:-10%;right:-5%;"></div>
         <div class="orb orb-gold" style="width:350px;height:350px;bottom:-5%;left:-3%;"></div>
         <div class="accent-line" style="height:40%;top:30%;left:15%;"></div>
@@ -1866,7 +1898,7 @@
         }
 
         let confettiFired = false;
-        const closingSlide = document.querySelector('[data-slide="15"]');
+        const closingSlide = document.querySelector('[data-slide="16"]');
         if (closingSlide) {
             const confettiObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
