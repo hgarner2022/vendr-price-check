@@ -577,26 +577,27 @@
             <span class="section-label reveal">Challenges</span>
             <h2 class="reveal">What we had to navigate</h2>
 
-            <div class="two-col" style="margin-top:var(--content-gap);">
-                <div style="display:flex;flex-direction:column;gap:clamp(8px,1vh,16px);">
-                    <div class="insight-card reveal">
-                        <strong style="color:var(--accent-terracotta);">CEO pressure to launch big</strong>
-                        <span>"Why not all 20,000 products on day one?" Used data to show thin coverage eroded trust. Held the line: top suppliers first.</span>
-                    </div>
-                    <div class="insight-card reveal">
-                        <strong style="color:var(--accent-terracotta);">Data degradation</strong>
-                        <span>Vendor pricing changed faster than our data refreshed. Built monitoring to flag thinning coverage before it hit users.</span>
-                    </div>
-                    <div class="insight-card reveal">
-                        <strong style="color:var(--accent-terracotta);">AI accuracy gaps</strong>
-                        <span>Summaries sometimes missed contract nuance. Below-3-star ratings triggered personal follow-ups to understand what fell short.</span>
-                    </div>
+            <!-- Three challenge cards in a horizontal row -->
+            <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.2vw,16px);margin-top:var(--content-gap);width:100%;">
+                <div class="insight-card" style="padding:clamp(10px,1.2vw,18px);">
+                    <strong style="color:var(--accent-terracotta);">Data coverage gaps</strong>
+                    <span>Didn&rsquo;t have data on every vendor. Designed graceful degradation &mdash; full SKU benchmarks where we had depth, negotiation insights where we didn&rsquo;t.</span>
                 </div>
-                <div class="reveal" style="display:flex;align-items:center;">
-                    <img src="vendr-price-check-assets/degradation.png"
-                         alt="Data coverage degradation"
-                         style="width:100%;max-height:min(45vh,360px);object-fit:contain;border-radius:10px;border:1px solid rgba(201,184,150,0.1);">
+                <div class="insight-card" style="padding:clamp(10px,1.2vw,18px);">
+                    <strong style="color:var(--accent-terracotta);">Misaligned expectations</strong>
+                    <span>Full supplier list set the wrong expectation. Negotiation-only results led to below 3-star ratings. Had to rethink how we framed coverage upfront.</span>
                 </div>
+                <div class="insight-card" style="padding:clamp(10px,1.2vw,18px);">
+                    <strong style="color:var(--accent-terracotta);">Extraction accuracy (evals)</strong>
+                    <span>Getting Extend.ai to 95%+ across 10+ doc types required iterating on prompts, tuning edge cases, and building eval pipelines.</span>
+                </div>
+            </div>
+
+            <!-- Degradation visual below -->
+            <div class="reveal" style="margin-top:clamp(6px,1vh,12px);text-align:center;">
+                <img src="vendr-price-check-assets/degradation.png"
+                     alt="Data coverage degradation"
+                     style="max-width:min(90%,600px);max-height:min(28vh,220px);object-fit:contain;border-radius:10px;border:1px solid rgba(201,184,150,0.1);">
             </div>
         </div>
     </section>
