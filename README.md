@@ -1,6 +1,6 @@
 # Price Check — Portfolio Case Study
 
-A presentation walking through how Vendr turned $3B+ in locked SaaS transaction data into a self-service pricing intelligence product and a compounding data moat.
+A presentation walking through how Vendr built Price Check — a free, self-serve tool that helps SaaS buyers answer the only question that matters: am I getting a fair deal?
 
 ## Viewing
 
