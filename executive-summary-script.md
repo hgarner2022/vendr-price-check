@@ -26,13 +26,13 @@ The result of doing that across twenty thousand deals was an incredible asset: o
 ## SLIDE 2: Problem
 **[~40 seconds]**
 
-Here's the problem we were solving. The average company uses over two hundred and fifty SaaS products. That's two hundred and fifty contracts, two hundred and fifty renewals, two hundred and fifty chances to overpay. And most companies do — by twenty to twenty-five percent.
+Here's the problem we were solving. You've already talked to the rep. You've already been through the demo, the negotiation, the back-and-forth. You have a number on paper. And now comes the question that nobody can answer: am I getting a good price?
 
-Picture this: you're a head of sales. You've just been handed a $400K Salesloft contract. Your CFO looks at you and says, "is this a good price?" And your honest answer is... "I have absolutely no idea."
+Picture this: you're a head of sales. You've just been handed a $400K Salesloft renewal. Your CFO looks at you and says, "is this a fair deal?" And your honest answer is... "I have absolutely no idea."
 
 That's a terrible position to be in. And it's not your fault.
 
-SaaS pricing is opaque by design. Vendors don't publish real prices. Every deal is "custom." Eighty-nine percent of SaaS contracts include automatic renewal clauses — and roughly a third of average SaaS spend goes to waste through accidental renewals alone. So buyers are Googling, asking around on Slack, checking G2 — and ultimately just... guessing. That's not a skills problem — it's an information problem. And we wanted to fix it.
+There is nowhere to get an honest, data-backed answer. SaaS pricing is opaque by design. Vendors don't publish real prices. Every deal is "custom." Eighty-nine percent of contracts include automatic renewal clauses — and roughly a third of SaaS spend goes to waste through accidental renewals alone. So you're Googling, asking peers, checking G2 — but none of that tells you whether your specific number is fair. That's not a skills problem — it's an information problem. And we wanted to fix it.
 
 ---
 
