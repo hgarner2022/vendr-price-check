@@ -536,6 +536,27 @@
             max-width: 600px;
         }
 
+        /* Stat grid — large numbers with labels */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(12px, 2vw, 32px);
+            margin-top: var(--content-gap);
+            text-align: center;
+        }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+            font-weight: 500;
+            display: block;
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: var(--small-size);
+            margin-top: 4px;
+            display: block;
+        }
+
         /* Results highlight */
         .result-row {
             display: flex;
@@ -985,32 +1006,35 @@
     <!-- ===================================================
          SLIDE 2: CONTEXT — VENDR'S TRANSFORMATION
          =================================================== -->
-    <section class="slide left-slide" data-slide="1">
-        <div class="orb orb-warm" style="width:350px;height:350px;top:10%;right:5%;"></div>
-        <div class="accent-line" style="height:60%;top:20%;right:20%;"></div>
+    <section class="slide centered-slide" data-slide="1">
+        <div class="orb orb-sage" style="width:400px;height:400px;top:5%;right:-5%;"></div>
         <span class="slide-number">01</span>
 
-        <div class="slide-content">
-            <span class="section-label reveal">Context</span>
-            <h2 class="reveal">Vendr was transforming from<br>service company to platform</h2>
-            <ul class="phase-list" style="margin-top:var(--element-gap);">
-                <li class="phase-item reveal">
-                    <span class="phase-marker">Before</span>
-                    <span class="phase-text"><strong>Staff augmentation model</strong> &mdash; procurement negotiation specialists handling deals for enterprise customers. Manual. High-touch. Expensive.</span>
-                </li>
-                <li class="phase-item reveal">
-                    <span class="phase-marker">Shift</span>
-                    <span class="phase-text"><strong>Post-Blissfully acquisition</strong> &mdash; platform still fragmented. Enterprise market tapped out. Needed to move downstream &amp; scale without adding headcount.</span>
-                </li>
-                <li class="phase-item reveal">
-                    <span class="phase-marker">Asset</span>
-                    <span class="phase-text"><strong>$3B+ in SaaS transaction data</strong> locked in manual processes &mdash; Power BI dashboards, Airtable, hand-delivered PDFs. Took days per request.</span>
-                </li>
-            </ul>
-            <div class="reveal" style="display:flex;align-items:center;gap:clamp(0.8rem,2vw,1.5rem);margin-top:var(--content-gap);background:rgba(212,165,116,0.06);border:1px solid rgba(212,165,116,0.15);border-radius:8px;padding:clamp(0.5rem,1.2vw,1rem) clamp(0.8rem,1.5vw,1.2rem);">
-                <img src="vendr-price-check-assets/Holograph.png" alt="Vendr Verified — Low Price holographic badge" style="width:clamp(80px,12vw,140px);flex-shrink:0;border-radius:4px;">
-                <p style="color:var(--text-primary);font-size:var(--body-size);line-height:1.5;margin:0;"><strong style="color:var(--accent-gold);">Vendr was the trusted source for SaaS pricing.</strong> The brand promise: we tell you whether your price is fair &mdash; definitively. The data was the moat. But it was trapped behind a service team.</p>
+        <div class="slide-content" style="max-width:min(96vw,900px);margin:0 auto;">
+            <span class="section-label reveal">Company</span>
+            <h2 class="reveal">From service to product-led growth</h2>
+            <p class="body-text reveal" style="text-align:center;margin:0 auto;max-width:720px;">
+                Vendr helped companies buy software through a concierge service. The result: $3B+ in real transaction data across thousands of SaaS vendors. The challenge: that data only served existing customers.
+            </p>
+
+            <div class="stat-grid reveal" style="max-width:700px;margin-left:auto;margin-right:auto;">
+                <div>
+                    <span class="stat-number" style="color:var(--accent-gold);">$3B+</span>
+                    <span class="stat-label">Transaction data</span>
+                </div>
+                <div>
+                    <span class="stat-number" style="color:var(--accent-pink);">5,000+</span>
+                    <span class="stat-label">Companies served</span>
+                </div>
+                <div>
+                    <span class="stat-number" style="color:var(--accent-sage);">20,000+</span>
+                    <span class="stat-label">SaaS products covered</span>
+                </div>
             </div>
+
+            <p class="callout reveal" style="margin-top:var(--content-gap);margin-left:auto;margin-right:auto;">
+                The opportunity: unlock that data for every buyer, not just paying customers.
+            </p>
         </div>
     </section>
 
