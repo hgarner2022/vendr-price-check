@@ -1279,62 +1279,50 @@
 
         <div class="slide-content" style="max-width:min(96vw,1400px);">
             <span class="section-label reveal">Building the Product</span>
-            <h2 class="reveal">The intelligence layer</h2>
+            <h2 class="reveal">The foundation was already there</h2>
+            <p class="body-text reveal" style="text-align:center;max-width:760px;margin:0 auto;">Six months of back-office extraction work with Extend.ai became the intelligence backbone for Price Check.</p>
 
-            <!-- Unified visual flow: Document → Pipeline → AI Summary -->
-            <div class="reveal" style="display:grid;grid-template-columns:2fr minmax(180px,1.3fr) 2fr;gap:clamp(16px,2.5vw,36px);align-items:center;margin-top:var(--content-gap);width:100%;">
+            <!-- Two-panel: What existed → What we built -->
+            <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,40px);align-items:stretch;margin-top:var(--content-gap);width:100%;">
 
-                <!-- Left: Raw document input -->
-                <div style="text-align:center;">
-                    <img src="vendr-price-check-assets/g2YVD08BXFx1z5AA0hbOVaw6g.avif" alt="Raw contract document" style="width:100%;max-height:min(45vh,380px);object-fit:contain;border-radius:12px;border:1px solid rgba(201,184,150,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
-                    <p style="color:var(--text-muted);font-size:var(--small-size);margin-top:clamp(4px,0.5vh,8px);font-style:italic;">Tens of millions of pages &mdash; 10+ document types</p>
+                <!-- LEFT: What existed — internal back-office tool -->
+                <div style="background:rgba(212,165,116,0.06);border:1px solid rgba(212,165,116,0.15);border-radius:clamp(12px,1.5vw,20px);padding:clamp(16px,2vh,28px);display:flex;flex-direction:column;gap:clamp(8px,1.2vh,16px);">
+                    <span style="font-family:var(--font-display);font-size:var(--small-size);color:var(--accent-gold);text-transform:uppercase;letter-spacing:0.12em;font-weight:600;">What existed</span>
+                    <p style="font-family:var(--font-display);font-size:clamp(1rem,2.2vw,1.5rem);color:var(--text-primary);font-weight:600;line-height:1.3;">Internal document processing tool</p>
+
+                    <div style="display:flex;align-items:center;gap:clamp(8px,1vw,14px);">
+                        <img src="vendr-price-check-assets/g2YVD08BXFx1z5AA0hbOVaw6g.avif" alt="Raw contract documents" style="width:clamp(80px,12vw,140px);height:clamp(80px,12vw,140px);object-fit:cover;border-radius:10px;border:1px solid rgba(201,184,150,0.12);flex-shrink:0;">
+                        <ul style="list-style:none;display:flex;flex-direction:column;gap:clamp(4px,0.6vh,8px);">
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-gold);font-size:0.5em;">&#9679;</span> Tens of millions of pages ingested</li>
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-gold);font-size:0.5em;">&#9679;</span> 10+ document types &mdash; contracts, quotes, POs</li>
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-gold);font-size:0.5em;">&#9679;</span> Extend.ai extraction at 95%+ accuracy</li>
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-gold);font-size:0.5em;">&#9679;</span> SKU mapping, scoring, schema normalization</li>
+                        </ul>
+                    </div>
+
+                    <p style="color:var(--text-muted);font-size:var(--small-size);font-style:italic;line-height:1.4;">Analysts used this tool internally to prep data for negotiations &mdash; powerful, but locked behind the services team.</p>
                 </div>
 
-                <!-- Center: Transformation pipeline as vertical steps -->
-                <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,20px);position:relative;padding:clamp(12px,2vh,24px) 0;">
-                    <div style="position:absolute;left:clamp(15px,2vh,22px);top:clamp(28px,4vh,40px);bottom:clamp(28px,4vh,40px);width:1px;background:linear-gradient(180deg,var(--accent-gold),var(--accent-terracotta),var(--accent-sage),var(--accent-pink));opacity:0.35;"></div>
+                <!-- RIGHT: What we built on top — Price Check -->
+                <div style="background:rgba(138,154,122,0.06);border:1px solid rgba(138,154,122,0.15);border-radius:clamp(12px,1.5vw,20px);padding:clamp(16px,2vh,28px);display:flex;flex-direction:column;gap:clamp(8px,1.2vh,16px);">
+                    <span style="font-family:var(--font-display);font-size:var(--small-size);color:var(--accent-sage);text-transform:uppercase;letter-spacing:0.12em;font-weight:600;">What we built on top</span>
+                    <p style="font-family:var(--font-display);font-size:clamp(1rem,2.2vw,1.5rem);color:var(--text-primary);font-weight:600;line-height:1.3;">Self-serve pricing intelligence</p>
 
-                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(212,165,116,0.5);color:var(--accent-gold);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">1</span>
-                        <div>
-                            <strong style="color:var(--accent-gold);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Upload</strong>
-                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">PDF, quote, or PO</span>
-                        </div>
+                    <div style="display:flex;align-items:center;gap:clamp(8px,1vw,14px);">
+                        <img src="vendr-price-check-assets/ai%20summary.png" alt="AI-generated pricing summary" style="width:clamp(80px,12vw,140px);height:clamp(80px,12vw,140px);object-fit:cover;border-radius:10px;border:1px solid rgba(138,154,122,0.12);flex-shrink:0;">
+                        <ul style="list-style:none;display:flex;flex-direction:column;gap:clamp(4px,0.6vh,8px);">
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-sage);font-size:0.5em;">&#9679;</span> Upload a quote, get instant market context</li>
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-sage);font-size:0.5em;">&#9679;</span> AI-generated pricing summary</li>
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-sage);font-size:0.5em;">&#9679;</span> Benchmarks across 20,000+ products</li>
+                            <li style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;display:flex;align-items:baseline;gap:6px;"><span style="color:var(--accent-sage);font-size:0.5em;">&#9679;</span> No sales team required &mdash; 100% self-serve</li>
+                        </ul>
                     </div>
 
-                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(196,122,90,0.5);color:var(--accent-terracotta);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">2</span>
-                        <div>
-                            <strong style="color:var(--accent-terracotta);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Extract</strong>
-                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Extend.ai &mdash; 95%+ accuracy</span>
-                        </div>
-                    </div>
-
-                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(138,154,122,0.5);color:var(--accent-sage);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">3</span>
-                        <div>
-                            <strong style="color:var(--accent-sage);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Schema</strong>
-                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">SKU mapping &amp; scoring</span>
-                        </div>
-                    </div>
-
-                    <div style="display:flex;align-items:center;gap:clamp(10px,1.2vw,16px);position:relative;">
-                        <span style="display:flex;align-items:center;justify-content:center;width:clamp(30px,4vh,44px);height:clamp(30px,4vh,44px);border-radius:50%;border:1.5px solid rgba(232,180,184,0.5);color:var(--accent-pink);font-family:var(--font-display);font-size:var(--body-size);font-weight:600;background:var(--bg-primary);flex-shrink:0;z-index:1;">4</span>
-                        <div>
-                            <strong style="color:var(--accent-pink);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;display:block;line-height:1.3;">Output</strong>
-                            <span style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Personalized to data depth</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: AI Summary output -->
-                <div style="text-align:center;">
-                    <img src="vendr-price-check-assets/ai%20summary.png" alt="AI-generated pricing summary" style="width:100%;max-height:min(45vh,380px);object-fit:contain;border-radius:12px;border:1px solid rgba(201,184,150,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3);">
-                    <p style="color:var(--text-muted);font-size:var(--small-size);margin-top:clamp(4px,0.5vh,8px);font-style:italic;">AI-generated summary</p>
+                    <p style="color:var(--text-muted);font-size:var(--small-size);font-style:italic;line-height:1.4;">Same extraction engine, now powering a customer-facing product anyone could use in under a minute.</p>
                 </div>
             </div>
 
-            <p class="callout reveal" style="margin-top:clamp(6px,1vh,12px);font-size:var(--small-size);">I chose Extend as our extraction partner and led the integration &mdash; iterating on prompts across 10+ document types and tuning models against edge cases in contracts, quotes, and order forms to unlock automation at scale.</p>
+            <p class="callout reveal" style="margin-top:clamp(6px,1vh,12px);font-size:var(--small-size);">I led the Extend.ai integration over six months &mdash; tuning extraction across 10+ document types. That work became the intelligence backbone Price Check launched on top of.</p>
         </div>
     </section>
 
