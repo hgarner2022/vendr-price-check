@@ -1,7 +1,7 @@
 const stats = [
   { value: "$900B", label: "spent on SaaS annually", color: "text-accent-gold" },
   { value: "20\u201325%", label: "overpaid on average", color: "text-accent-pink" },
-  { value: "0", label: "vendors publish pricing", color: "text-accent-sage" },
+  { value: "250+", label: "products in their tech stack", color: "text-accent-sage" },
 ];
 
 export function ExecutiveSummary() {
