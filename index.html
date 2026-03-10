@@ -1042,32 +1042,43 @@
          SLIDE 2: THE PROBLEM
          =================================================== -->
     <section class="slide centered-slide" data-slide="2">
-        <div class="orb orb-sage" style="width:300px;height:300px;bottom:5%;left:60%;"></div>
+        <div class="orb orb-gold" style="width:400px;height:400px;top:-10%;right:5%;"></div>
+        <div class="orb orb-sage" style="width:300px;height:300px;bottom:5%;left:10%;"></div>
         <span class="slide-number">02</span>
 
-        <div class="slide-content">
+        <div class="slide-content" style="max-width:min(96vw,900px);margin:0 auto;">
             <span class="section-label reveal">Problem Definition</span>
             <h2 class="reveal">SaaS pricing is completely opaque</h2>
 
-            <div class="reveal" style="margin-top:var(--content-gap);">
-                <p style="color:var(--text-secondary);font-size:var(--body-size);line-height:1.7;">There are no public benchmarks for what software actually costs. Buyers Google it, find nothing, and sign contracts blind.</p>
-                <p style="color:var(--text-primary);font-size:var(--body-size);line-height:1.7;margin-top:clamp(0.75rem,1.5vh,1.25rem);">Vendr had the answer &mdash; <strong style="color:var(--accent-gold);">$3B+ in real transaction data</strong> &mdash; but it was locked behind a service motion. Our SaaS consultants used the data to negotiate on behalf of customers. Powerful, but it didn&rsquo;t scale.</p>
+            <!-- Scale -->
+            <div class="stat-grid reveal" style="max-width:600px;margin-left:auto;margin-right:auto;grid-template-columns:1fr 1fr;">
+                <div>
+                    <span class="stat-number" style="color:var(--accent-gold);">$900B</span>
+                    <span class="stat-label">spent on software in 2023</span>
+                </div>
+                <div>
+                    <span class="stat-number" style="color:var(--accent-pink);">250+</span>
+                    <span class="stat-label">SaaS products per company</span>
+                </div>
             </div>
 
-            <div class="reveal" style="display:flex;gap:clamp(1.5rem,3vw,3rem);margin-top:clamp(1.5rem,3vh,2.5rem);">
-                <div style="border-left:2px solid var(--accent-gold);padding-left:clamp(10px,1.2vw,16px);">
-                    <strong style="color:var(--accent-gold);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;">Market</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:4px;">No one publishes real SaaS transaction prices. Every purchase &mdash; new or renewal &mdash; starts with &ldquo;Contact us for pricing.&rdquo;</p>
-                </div>
-                <div style="border-left:2px solid var(--accent-terracotta);padding-left:clamp(10px,1.2vw,16px);">
-                    <strong style="color:var(--accent-terracotta);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;">Demand</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:4px;">Massive organic traffic to our pricing pages &mdash; people were searching for this data.</p>
-                </div>
-                <div style="border-left:2px solid var(--accent-sage);padding-left:clamp(10px,1.2vw,16px);">
-                    <strong style="color:var(--accent-sage);font-size:var(--body-size);font-family:var(--font-display);font-weight:600;">Gap</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.5;margin-top:4px;">$3B+ in transaction data, but only accessible through a services team negotiating on your behalf. The insight existed &mdash; the self-serve product didn&rsquo;t.</p>
+            <!-- The problem -->
+            <p class="body-text reveal" style="text-align:center;margin:var(--content-gap) auto 0;max-width:720px;">
+                Not one of them publishes what it actually costs. There are no benchmarks, no comparables, no way to know if the number on the table is fair.
+            </p>
+
+            <!-- Consequence -->
+            <div class="stat-grid reveal" style="grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto;">
+                <div>
+                    <span class="stat-number" style="color:var(--accent-gold);font-size:clamp(2.4rem,5vw,3.8rem);">20&ndash;25%</span>
+                    <span class="stat-label">overpaid on average</span>
                 </div>
             </div>
+
+            <!-- Inequity -->
+            <p class="callout reveal" style="margin-top:var(--content-gap);margin-left:auto;margin-right:auto;">
+                Big companies have procurement teams, pricing data, and negotiation experts to make sure they never overpay. Most companies don&rsquo;t. They&rsquo;re left guessing &mdash; or hoping they got a &ldquo;good deal.&rdquo;
+            </p>
         </div>
     </section>
 
@@ -1099,64 +1110,22 @@
                 </div>
             </div>
 
-            <p class="callout reveal" style="margin-top:var(--content-gap);text-align:center;">I owned the Experiences layer &mdash; how and where we expose pricing data to buyers, and what it looks like.</p>
+            <p class="callout reveal" style="margin-top:var(--content-gap);text-align:center;">I owned the Experiences layer &mdash; the right data, to the right person, at the right time.</p>
         </div>
     </section>
 
     <!-- ===================================================
-         SLIDE 4: PRODUCT TENETS
+         SLIDE 4: PRICE CHECK STRATEGY
          =================================================== -->
     <section class="slide centered-slide" data-slide="4">
-        <div class="orb orb-gold" style="width:350px;height:350px;top:-5%;right:10%;"></div>
-        <div class="orb orb-rose" style="width:200px;height:200px;bottom:10%;left:5%;"></div>
-        <span class="slide-number">04</span>
-
-        <div class="slide-content" style="max-width:min(96vw,900px);margin:0 auto;">
-            <span class="section-label reveal">Product Tenets</span>
-            <h2 class="reveal">The principles that guided<br>every product decision</h2>
-
-            <div class="reveal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(1rem,2vw,2rem);margin-top:var(--content-gap);">
-                <div style="text-align:center;flex:0 0 28%;min-width:180px;">
-                    <span style="color:var(--accent-warm);font-size:clamp(1rem,1.6vw,1.3rem);display:block;margin-bottom:clamp(3px,0.6vh,8px);">&#9670;</span>
-                    <strong style="color:var(--text-primary);font-size:var(--small-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:3px;">Software pricing is our playground</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">We doubled down on pricing AI &mdash; choosing to invest here over many other attractive product ideas.</p>
-                </div>
-                <div style="text-align:center;flex:0 0 28%;min-width:180px;">
-                    <span style="color:var(--accent-gold);font-size:clamp(1rem,1.6vw,1.3rem);display:block;margin-bottom:clamp(3px,0.6vh,8px);">&#9670;</span>
-                    <strong style="color:var(--text-primary);font-size:var(--small-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:3px;">Customers don&rsquo;t come to us</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Public APIs empower partners to bring price transparency to buyers in websites and apps of their choice.</p>
-                </div>
-                <div style="text-align:center;flex:0 0 28%;min-width:180px;">
-                    <span style="color:var(--accent-terracotta);font-size:clamp(1rem,1.6vw,1.3rem);display:block;margin-bottom:clamp(3px,0.6vh,8px);">&#9670;</span>
-                    <strong style="color:var(--text-primary);font-size:var(--small-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:3px;">Big rocks, not gravel</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Set aside smaller initiatives to focus on pricing AI, public APIs, and key experiences built on them.</p>
-                </div>
-                <div style="text-align:center;flex:0 0 28%;min-width:180px;">
-                    <span style="color:var(--accent-sage);font-size:clamp(1rem,1.6vw,1.3rem);display:block;margin-bottom:clamp(3px,0.6vh,8px);">&#9670;</span>
-                    <strong style="color:var(--text-primary);font-size:var(--small-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:3px;">Data fuels price transparency</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Every product investment generates more data, making the pricing AI smarter with every use.</p>
-                </div>
-                <div style="text-align:center;flex:0 0 28%;min-width:180px;">
-                    <span style="color:var(--accent-pink);font-size:clamp(1rem,1.6vw,1.3rem);display:block;margin-bottom:clamp(3px,0.6vh,8px);">&#9670;</span>
-                    <strong style="color:var(--text-primary);font-size:var(--small-size);font-family:var(--font-display);font-weight:600;display:block;margin-bottom:3px;">Educate, not just solve</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);line-height:1.4;">Transparency creates more long-term value than information asymmetry.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================================================
-         SLIDE 4: THE STRATEGIC BET
-         =================================================== -->
-    <section class="slide centered-slide" data-slide="5">
         <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;left:30%;"></div>
         <div class="orb orb-rose" style="width:250px;height:250px;bottom:10%;right:15%;"></div>
-        <span class="slide-number">05</span>
+        <span class="slide-number">04</span>
 
         <div class="slide-content">
-            <span class="section-label reveal">Strategy &amp; Goals</span>
+            <span class="section-label reveal">Price Check Strategy</span>
             <h2 class="reveal">Give the data away for free.<br>Let every use make it smarter.</h2>
-            <p class="body-text reveal" style="text-align:center;margin:var(--element-gap) auto 0;max-width:720px;">Upload a contract, get an instant price assessment. Every upload enriches the dataset &mdash; better benchmarks, tighter ranges, more confident answers for the next buyer.</p>
+            <p class="body-text reveal" style="text-align:center;margin:var(--element-gap) auto 0;max-width:720px;">Buyers weren&rsquo;t going to come to us &mdash; we needed to go to them. Price Check was my bet: make the richest pricing dataset in SaaS free, instant, and self-serve. Every upload feeds the flywheel &mdash; more data in, smarter answers out.</p>
 
             <div class="metrics-row reveal" style="margin-top:var(--content-gap);justify-content:center;">
                 <div class="metric" style="text-align:center;">
@@ -1178,10 +1147,10 @@
     <!-- ===================================================
          SLIDE 5: THE PERSONA
          =================================================== -->
-    <section class="slide left-slide" data-slide="6">
+    <section class="slide left-slide" data-slide="5">
         <div class="orb orb-pink" style="width:280px;height:280px;top:15%;right:10%;"></div>
         <div class="accent-line" style="height:50%;top:25%;left:8%;"></div>
-        <span class="slide-number">06</span>
+        <span class="slide-number">05</span>
 
         <div class="slide-content" style="max-width:min(96vw,1300px);">
             <span class="section-label reveal">Who we&rsquo;re building for</span>
@@ -1225,9 +1194,9 @@
     <!-- ===================================================
          SLIDE 6: THE TRIAD
          =================================================== -->
-    <section class="slide centered-slide" data-slide="7">
+    <section class="slide centered-slide" data-slide="6">
         <div class="orb orb-warm" style="width:400px;height:400px;top:-10%;left:20%;"></div>
-        <span class="slide-number">07</span>
+        <span class="slide-number">06</span>
 
         <div class="slide-content">
             <span class="section-label reveal">The Team</span>
@@ -1286,9 +1255,9 @@
     <!-- ===================================================
          SLIDE 7: THE FOUNDATION — WHAT ALREADY EXISTED
          =================================================== -->
-    <section class="slide centered-slide" data-slide="8">
+    <section class="slide centered-slide" data-slide="7">
         <div class="orb orb-warm" style="width:400px;height:400px;bottom:-5%;right:8%;"></div>
-        <span class="slide-number">08</span>
+        <span class="slide-number">07</span>
 
         <div class="slide-content" style="max-width:min(96vw,1200px);margin:0 auto;width:100%;align-items:center;text-align:center;">
             <span class="section-label reveal">Building the Product</span>
@@ -1328,9 +1297,9 @@
     <!-- ===================================================
          SLIDE 8: FROM MANUAL TO AUTOMATED
          =================================================== -->
-    <section class="slide centered-slide" data-slide="9">
+    <section class="slide centered-slide" data-slide="8">
         <div class="orb orb-sage" style="width:400px;height:400px;top:2%;right:-8%;"></div>
-        <span class="slide-number">09</span>
+        <span class="slide-number">08</span>
 
         <div class="slide-content" style="max-width:min(96vw,1400px);">
             <span class="section-label reveal">Discovery</span>
@@ -1375,9 +1344,9 @@
     <!-- ===================================================
          SLIDE 9: EXPOSURE — HOW USERS FIND PRICE CHECK
          =================================================== -->
-    <section class="slide centered-slide" data-slide="10">
+    <section class="slide centered-slide" data-slide="9">
         <div class="orb orb-pink" style="width:350px;height:350px;bottom:8%;left:-6%;"></div>
-        <span class="slide-number">10</span>
+        <span class="slide-number">09</span>
 
         <div class="slide-content" style="max-width:min(96vw,1400px);">
             <span class="section-label reveal">Building the Product</span>
@@ -1423,50 +1392,11 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 10: THE PRODUCT — FULL EXPERIENCE
-         Uses analysis.png (complete product page)
+         SLIDE 10: PRODUCT ANIMATION — BELL CURVE BUILDING
          =================================================== -->
-    <section class="slide centered-slide" data-slide="11">
-        <div class="orb orb-pink" style="width:350px;height:350px;top:3%;left:3%;"></div>
-        <div class="orb orb-gold" style="width:280px;height:280px;bottom:3%;right:3%;"></div>
-        <span class="slide-number">11</span>
-
-        <div class="slide-content" style="max-width:min(96vw,1400px);">
-            <span class="section-label reveal">Building the Product</span>
-            <h2 class="reveal">The finished product</h2>
-            <p class="body-text reveal" style="text-align:center;margin:0 auto;max-width:720px;color:var(--text-secondary);">From back-office data to an instant answer: upload a contract, get a fair price assessment in under a minute &mdash; free, self-serve, no rep required.</p>
-
-            <!-- BIG centered product image — Price Check result page -->
-            <img src="vendr-price-check-assets/ai summary.png" alt="Price Check result — bell curve, AI summary, fair price assessment" class="product-img reveal-scale" style="max-height:min(46vh,400px);border-radius:12px;border:1px solid rgba(232,180,184,0.1);margin-top:clamp(4px,0.8vh,12px);box-shadow:0 16px 50px rgba(0,0,0,0.4);">
-
-            <!-- Feature labels — horizontal strip -->
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,28px);margin-top:clamp(6px,1vh,16px);width:100%;text-align:left;" class="reveal">
-                <div style="border-left:3px solid var(--accent-gold);padding-left:clamp(10px,1.2vw,16px);">
-                    <strong style="color:var(--accent-gold);font-size:var(--body-size);">Bell curve pricing</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Where you sit vs. the market</p>
-                </div>
-                <div style="border-left:3px solid var(--accent-pink);padding-left:clamp(10px,1.2vw,16px);">
-                    <strong style="color:var(--accent-pink);font-size:var(--body-size);">Competitor alternatives</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Other products with &ldquo;Get a quote&rdquo;</p>
-                </div>
-                <div style="border-left:3px solid var(--accent-sage);padding-left:clamp(10px,1.2vw,16px);">
-                    <strong style="color:var(--accent-sage);font-size:var(--body-size);">Negotiation insights</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Specific ways to lower your price</p>
-                </div>
-                <div style="border-left:3px solid var(--accent-terracotta);padding-left:clamp(10px,1.2vw,16px);">
-                    <strong style="color:var(--accent-terracotta);font-size:var(--body-size);">AI summary</strong>
-                    <p style="color:var(--text-secondary);font-size:var(--small-size);margin-top:3px;">Plain-language assessment of your deal</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================================================
-         SLIDE 11: PRODUCT ANIMATION — BELL CURVE BUILDING
-         =================================================== -->
-    <section class="slide centered-slide" data-slide="12">
+    <section class="slide centered-slide" data-slide="10">
         <div class="orb orb-sage" style="width:350px;height:350px;top:5%;right:-5%;"></div>
-        <span class="slide-number">12</span>
+        <span class="slide-number">10</span>
 
         <div class="slide-content" style="max-width:min(96vw,1400px);">
             <span class="section-label reveal">Building the Product</span>
@@ -1506,11 +1436,11 @@
 
             <script>
             (function() {
-                const graphs = document.querySelectorAll('[data-slide="12"] .pc-graph');
-                const fullBase = document.querySelector('[data-slide="12"] .pc-frame.pc-active');
-                const fullComplete = document.querySelectorAll('[data-slide="12"] .pc-frame')[1];
-                const dots = document.querySelectorAll('[data-slide="12"] .pc-dot');
-                const caption = document.querySelector('[data-slide="12"] .pc-caption');
+                const graphs = document.querySelectorAll('[data-slide="10"] .pc-graph');
+                const fullBase = document.querySelector('[data-slide="10"] .pc-frame.pc-active');
+                const fullComplete = document.querySelectorAll('[data-slide="10"] .pc-frame')[1];
+                const dots = document.querySelectorAll('[data-slide="10"] .pc-dot');
+                const caption = document.querySelector('[data-slide="10"] .pc-caption');
                 const captions = [
                     'You upload your contract',
                     'We pull from 1,490 real transactions for this vendor',
@@ -1577,7 +1507,7 @@
                         else { clearInterval(interval); }
                     });
                 }, { threshold: 0.5 });
-                observer.observe(document.querySelector('[data-slide="12"]'));
+                observer.observe(document.querySelector('[data-slide="10"]'));
             })();
             </script>
 
@@ -1586,11 +1516,11 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 12: STAKEHOLDER MANAGEMENT
+         SLIDE 11: STAKEHOLDER MANAGEMENT
          =================================================== -->
-    <section class="slide left-slide" data-slide="13">
+    <section class="slide left-slide" data-slide="11">
         <div class="orb orb-rose" style="width:300px;height:300px;top:10%;right:5%;"></div>
-        <span class="slide-number">13</span>
+        <span class="slide-number">11</span>
 
         <div class="slide-content" style="max-width:min(96vw,1400px);">
             <span class="section-label reveal">Challenges</span>
@@ -1646,12 +1576,12 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 13: RESULTS
+         SLIDE 12: RESULTS
          =================================================== -->
-    <section class="slide centered-slide" data-slide="14">
+    <section class="slide centered-slide" data-slide="12">
         <div class="orb orb-gold" style="width:400px;height:400px;top:-5%;right:-5%;"></div>
         <div class="orb orb-pink" style="width:200px;height:200px;bottom:15%;left:5%;"></div>
-        <span class="slide-number">14</span>
+        <span class="slide-number">12</span>
 
         <div class="slide-content">
             <span class="section-label reveal">Results</span>
@@ -1686,12 +1616,12 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 14: REFLECTION
+         SLIDE 13: REFLECTION
          =================================================== -->
-    <section class="slide left-slide" data-slide="15">
+    <section class="slide left-slide" data-slide="13">
         <div class="orb orb-sage" style="width:280px;height:280px;bottom:10%;right:15%;"></div>
         <div class="accent-line" style="height:50%;top:25%;right:25%;"></div>
-        <span class="slide-number">15</span>
+        <span class="slide-number">13</span>
 
         <div class="slide-content">
             <span class="section-label reveal">Reflection</span>
@@ -1706,9 +1636,9 @@
     </section>
 
     <!-- ===================================================
-         SLIDE 15: CLOSING
+         SLIDE 14: CLOSING
          =================================================== -->
-    <section class="slide closing-slide" data-slide="16">
+    <section class="slide closing-slide" data-slide="14">
         <div class="orb orb-pink" style="width:400px;height:400px;top:-10%;right:-5%;"></div>
         <div class="orb orb-gold" style="width:350px;height:350px;bottom:-5%;left:-3%;"></div>
         <div class="accent-line" style="height:40%;top:30%;left:15%;"></div>
@@ -1960,7 +1890,7 @@
         }
 
         let confettiFired = false;
-        const closingSlide = document.querySelector('[data-slide="16"]');
+        const closingSlide = document.querySelector('[data-slide="14"]');
         if (closingSlide) {
             const confettiObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1994,7 +1924,7 @@
         }
 
         let sparklesFired = false;
-        const metricsSlide = document.querySelector('[data-slide="14"]');
+        const metricsSlide = document.querySelector('[data-slide="12"]');
         if (metricsSlide) {
             const sparkleObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
