@@ -22,7 +22,7 @@ export function VideoSection() {
             poster=""
           >
             <source
-              src="/vendr-price-check-assets/Unlocking%20SaaS%20Pricing%20Transparency_%20The%20Price%20Check%20Journey%20%F0%9F%9A%80.mp4"
+              src="/vendr-price-check/vendr-price-check-assets/Unlocking%20SaaS%20Pricing%20Transparency_%20The%20Price%20Check%20Journey%20%F0%9F%9A%80.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.

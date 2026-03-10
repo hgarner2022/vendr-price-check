@@ -14,7 +14,7 @@ export function PresentationEmbed() {
             Interactive Presentation
           </h2>
           <a
-            href="/presentation.html"
+            href="/vendr-price-check/presentation.html"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-foreground-muted font-sans text-sm rounded-lg hover:bg-foreground/5 hover:text-foreground transition-colors"
@@ -41,7 +41,7 @@ export function PresentationEmbed() {
         <div className="relative rounded-xl overflow-hidden border border-border shadow-2xl bg-background">
           <div className="aspect-video">
             <iframe
-              src="/presentation.html"
+              src="/vendr-price-check/presentation.html"
               title="Vendr Price Check Presentation"
               className="w-full h-full"
               loading="lazy"

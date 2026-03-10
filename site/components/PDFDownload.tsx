@@ -48,7 +48,7 @@ export function PDFDownload() {
           </p>
 
           <a
-            href="/vendr-price-check-assets/Price%20report%20sample2.pdf"
+            href="/vendr-price-check/vendr-price-check-assets/Price%20report%20sample2.pdf"
             download
             className="inline-flex items-center gap-2 px-8 py-3 bg-accent-gold text-background font-sans font-medium text-sm tracking-wide rounded-lg hover:bg-accent-gold/90 transition-colors"
           >
