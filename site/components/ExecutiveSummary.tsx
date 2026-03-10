@@ -42,7 +42,7 @@ export function ExecutiveSummary() {
 
         {/* Transition line */}
         <p className="font-sans text-lg text-foreground-muted mt-10 max-w-2xl mx-auto">
-          <strong className="text-foreground">Vendr</strong> negotiates software contracts alongside buyers — amassing <strong className="text-accent-gold">$3B+ in real transaction data</strong>. I saw the chance to flip the leverage.
+          Enter Vendr — sitting on <strong className="text-accent-gold">$3B in locked transaction data</strong> and a chance to bring transparency to the buyer ecosystem.
         </p>
       </div>
     </section>
