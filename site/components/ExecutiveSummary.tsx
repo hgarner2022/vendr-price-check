@@ -39,6 +39,11 @@ export function ExecutiveSummary() {
             </div>
           ))}
         </div>
+
+        {/* Transition line */}
+        <p className="font-sans text-lg text-foreground-muted mt-10 max-w-2xl mx-auto">
+          Enter <strong className="text-foreground">Vendr</strong> — sitting on <strong className="text-accent-gold">$3B in locked transaction data</strong> and a chance to flip the leverage.
+        </p>
       </div>
     </section>
   );
