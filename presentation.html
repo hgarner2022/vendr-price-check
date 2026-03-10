@@ -771,54 +771,6 @@
         }
 
         /* ===========================================
-           EDIT MODE (Inline Editing)
-           =========================================== */
-        .edit-hotzone {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 80px;
-            height: 80px;
-            z-index: 10000;
-            cursor: pointer;
-        }
-        .edit-toggle {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid rgba(200, 184, 150, 0.2);
-            color: var(--text-secondary);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 10001;
-        }
-        .edit-toggle.show,
-        .edit-toggle.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .edit-toggle.active {
-            background: var(--accent-warm);
-            color: var(--bg-primary);
-            border-color: var(--accent-warm);
-        }
-        [contenteditable="true"] {
-            outline: 1px dashed rgba(212, 165, 116, 0.4);
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
-
-        /* ===========================================
            CONFETTI & FUN STUFF
            =========================================== */
         .confetti-piece {
@@ -830,41 +782,6 @@
             pointer-events: none;
             will-change: transform, opacity;
         }
-
-        /* Share button */
-        .share-btn {
-            position: fixed;
-            bottom: clamp(16px, 3vh, 28px);
-            right: clamp(16px, 3vw, 28px);
-            z-index: 10000;
-            background: var(--bg-card);
-            border: 1px solid rgba(200,184,150,0.15);
-            color: var(--text-secondary);
-            font-family: var(--font-body);
-            font-size: 13px;
-            padding: 10px 18px;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s var(--ease-out-expo);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .share-btn:hover {
-            background: rgba(201,184,150,0.12);
-            color: var(--text-primary);
-            border-color: rgba(200,184,150,0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-        }
-        .share-btn.copied {
-            background: var(--accent-sage);
-            color: #0f0f0f;
-            border-color: var(--accent-sage);
-        }
-        .share-btn svg { width: 16px; height: 16px; }
 
         /* Keyboard hints */
         .nav-hint {
@@ -967,12 +884,6 @@
     <!-- Progress bar -->
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Share button -->
-    <button class="share-btn" id="shareBtn" title="Copy link to share">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        <span id="shareBtnText">Share</span>
-    </button>
-
     <!-- Keyboard nav hint -->
     <div class="nav-hint" id="navHint">
         <kbd>&darr;</kbd> scroll to navigate &middot; <kbd>&uarr;</kbd> go back
@@ -980,10 +891,6 @@
 
     <!-- Navigation dots -->
     <nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
-
-    <!-- Edit mode controls -->
-    <div class="edit-hotzone" id="editHotzone"></div>
-    <button class="edit-toggle" id="editToggle" title="Edit mode (E)">&#9998;</button>
 
     <!-- ===================================================
          SLIDE 1: TITLE
@@ -1767,87 +1674,8 @@
             }
         }
 
-        /* === INLINE EDITOR === */
-        class InlineEditor {
-            constructor() {
-                this.isActive = false;
-                this.editables = document.querySelectorAll('h1, h2, h3, p, span, li, strong');
-            }
-
-            toggleEditMode() {
-                this.isActive = !this.isActive;
-                const btn = document.getElementById('editToggle');
-                btn.classList.toggle('active', this.isActive);
-                this.editables.forEach(el => {
-                    if (this.isActive) {
-                        el.setAttribute('contenteditable', 'true');
-                    } else {
-                        el.removeAttribute('contenteditable');
-                    }
-                });
-                /* Save on deactivate */
-                if (!this.isActive) this.save();
-            }
-
-            save() {
-                const data = {};
-                this.editables.forEach((el, i) => {
-                    data[i] = el.innerHTML;
-                });
-                localStorage.setItem('vendr-presentation-edits', JSON.stringify(data));
-            }
-
-            load() {
-                const saved = localStorage.getItem('vendr-presentation-edits');
-                if (!saved) return;
-                try {
-                    const data = JSON.parse(saved);
-                    this.editables.forEach((el, i) => {
-                        if (data[i] !== undefined) el.innerHTML = data[i];
-                    });
-                } catch (e) { /* ignore */ }
-            }
-        }
-
         /* === INITIALIZE === */
         const presentation = new SlidePresentation();
-        const editor = new InlineEditor();
-        editor.load();
-
-        /* Edit toggle hover behavior */
-        const hotzone = document.getElementById('editHotzone');
-        const editToggle = document.getElementById('editToggle');
-        let hideTimeout = null;
-
-        hotzone.addEventListener('mouseenter', () => {
-            clearTimeout(hideTimeout);
-            editToggle.classList.add('show');
-        });
-        hotzone.addEventListener('mouseleave', () => {
-            hideTimeout = setTimeout(() => {
-                if (!editor.isActive) editToggle.classList.remove('show');
-            }, 400);
-        });
-        editToggle.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); });
-        editToggle.addEventListener('mouseleave', () => {
-            hideTimeout = setTimeout(() => {
-                if (!editor.isActive) editToggle.classList.remove('show');
-            }, 400);
-        });
-
-        editToggle.addEventListener('click', () => { editor.toggleEditMode(); });
-        hotzone.addEventListener('click', () => { editor.toggleEditMode(); });
-
-        document.addEventListener('keydown', (e) => {
-            if ((e.key === 'e' || e.key === 'E') && !e.target.getAttribute('contenteditable')) {
-                editor.toggleEditMode();
-            }
-            /* Ctrl/Cmd + S to save */
-            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-                e.preventDefault();
-                editor.save();
-            }
-        });
 
         /* ===========================================
            CONFETTI ON CLOSING SLIDE
@@ -1932,26 +1760,6 @@
             }, { threshold: 0.6 });
             sparkleObserver.observe(metricsSlide);
         }
-
-        /* ===========================================
-           SHARE BUTTON
-           =========================================== */
-        const shareBtn = document.getElementById('shareBtn');
-        const shareBtnText = document.getElementById('shareBtnText');
-        shareBtn.addEventListener('click', async () => {
-            const url = window.location.href;
-            if (navigator.share) {
-                try { await navigator.share({ title: 'Vendr Price Check — Case Study', url }); } catch(e) {}
-            } else {
-                await navigator.clipboard.writeText(url);
-                shareBtn.classList.add('copied');
-                shareBtnText.textContent = 'Copied!';
-                setTimeout(() => {
-                    shareBtn.classList.remove('copied');
-                    shareBtnText.textContent = 'Share';
-                }, 2000);
-            }
-        });
 
         /* ===========================================
            KEYBOARD NAV HINTS
