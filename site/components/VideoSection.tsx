@@ -10,7 +10,7 @@ export function VideoSection() {
         </p>
 
         <h2 className="font-serif text-3xl md:text-4xl font-light text-foreground mb-8">
-          Loom Executive Summary
+          Executive Summary
         </h2>
 
         {/* Video player */}
