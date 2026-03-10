@@ -42,7 +42,7 @@ export function ExecutiveSummary() {
 
         {/* Transition line */}
         <p className="font-sans text-lg text-foreground-muted mt-10 max-w-2xl mx-auto">
-          Enter <strong className="text-foreground">Vendr</strong> — sitting on <strong className="text-accent-gold">$3B in locked transaction data</strong> and a chance to flip the leverage.
+          <strong className="text-foreground">Vendr</strong> negotiates software contracts alongside buyers — unlocking <strong className="text-accent-gold">$3B+ in real transaction data</strong> across thousands of SaaS vendors. I turned that data into the product.
         </p>
       </div>
     </section>
