@@ -13,8 +13,8 @@ export default function Home() {
       <main>
         <Hero />
         <ExecutiveSummary />
-        <PresentationEmbed />
         <VideoSection />
+        <PresentationEmbed />
         <PDFDownload />
       </main>
       <Footer />
