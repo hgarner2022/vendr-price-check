@@ -31,10 +31,10 @@ export function Hero() {
             View Presentation
           </a>
           <a
-            href="#download"
+            href="#video"
             className="px-8 py-3 border border-border text-foreground font-sans font-medium text-sm tracking-wide rounded-lg hover:bg-foreground/5 transition-colors"
           >
-            Download Case Study
+            Watch Executive Summary
           </a>
         </div>
       </div>
